@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MED QUEST — Duas Fases • Personagens • Mobile 16-bit (v7)</title>
+<style>
+:root{--night:#22243a;--night2:#303351;--outline:#3d405e;--paper:#fff7ea;--cream:#f3e8d6;--pink:#e98da5;--pink2:#f7ced2;--mint:#9de1c8;--violet:#b9a0d5;--yellow:#ffe0a3;--text:#303047}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);background:radial-gradient(circle at 10% 10%,#484269 0,transparent 28%),radial-gradient(circle at 90% 92%,#3a555e 0,transparent 30%),#20243a;font:600 15px/1.5 'Trebuchet MS',Verdana,system-ui,sans-serif;min-height:100vh}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #edb750;outline-offset:3px}.pixel{font-family:'Courier New',monospace;font-weight:1000;letter-spacing:.2px}.shell{width:min(1160px,96vw);margin:22px auto 32px}.masthead{display:flex;justify-content:space-between;gap:12px;align-items:center;color:white;padding:0 2px 14px}.masthead strong{font:1000 clamp(18px,2.8vw,27px) 'Courier New',monospace;letter-spacing:-.7px;color:#fff2e8;text-shadow:3px 3px #714c78}.masthead .sub{font:800 12px 'Courier New',monospace;color:#bfebe0}.masthead .right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.chip{border:2px solid #706783;padding:5px 8px;background:#383b55;border-radius:5px;color:#e8e1f5;font:700 11px 'Courier New',monospace}.shellcard{background:var(--paper);border:5px solid #151b33;box-shadow:0 0 0 4px #76708e,0 14px 0 #13192a;overflow:hidden;min-height:630px}.stage{display:none}.stage.active{display:block}.btn{border:3px solid #36334d;background:#e68ca8;color:#302a40;box-shadow:4px 4px 0 #463953;min-height:42px;padding:8px 15px;font-weight:1000;border-radius:2px;transition:transform .1s}.btn:hover{transform:translateY(-2px);filter:brightness(1.035)}.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #463953}.btn.green{background:#a8e1cb}.btn.sand{background:#f1dda9}.btn.ghost{background:#eee6f4}.btn:disabled{opacity:.45;cursor:default}.small{font-size:12px;color:#706a80;font-weight:700}.kicker{display:inline-block;border:2px solid #3c3857;background:#ffdfaa;padding:5px 9px;font:900 12px 'Courier New',monospace}.stage-intro{background:linear-gradient(160deg,#d7d3ed,#f1d5d8 60%,#ead7c7);padding:18px;min-height:630px}.intro-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:5px 6px 13px}.pixel-art{display:block;width:100%;image-rendering:pixelated;image-rendering:crisp-edges}.cinema{border:5px solid #35344f;background:#5b6086;box-shadow:7px 7px 0 #8e7f9f;overflow:hidden;position:relative}.cinema canvas{height:auto;aspect-ratio:16 / 7.5}.cinema-label{position:absolute;bottom:9px;left:12px;padding:4px 8px;background:rgba(34,37,59,.86);color:#fff5e8;font:800 11px 'Courier New',monospace}.storypanel{background:#fffaf0;border:4px solid #41415f;margin:15px 0 0;padding:20px 23px;box-shadow:6px 6px 0 #c4a9b6}.storypanel h1{font:1000 clamp(19px,3.3vw,29px) 'Courier New',monospace;color:#8e4e74;line-height:1.3;margin:7px 0 12px}.storypanel p{margin:0 0 12px;font-size:16px;line-height:1.6;min-height:48px}.storypanel .storybottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.dots{display:flex;gap:7px}.dot{width:11px;height:11px;background:#c9bac9;border:2px solid #4b4762}.dot.on{background:#e183a4}.game-top{padding:11px 15px;background:#faf0e5;border-bottom:4px solid #343750;display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.score{font:1000 12px 'Courier New',monospace;display:flex;gap:12px;flex-wrap:wrap}.hud-title{font:1000 12px 'Courier New',monospace;color:#955b7e}.layout{display:grid;grid-template-columns:minmax(0,1fr) 248px;gap:0;align-items:stretch}.playarea{padding:15px 13px 10px;background:#f3e8db}.canvas-wrap{border:5px solid #3f405e;background:#a8d0c8;box-shadow:5px 5px 0 #c6b1be;position:relative;overflow:hidden}.canvas-wrap canvas{display:block;width:100%;aspect-ratio:16/10;image-rendering:pixelated;image-rendering:crisp-edges}.canvas-pill{position:absolute;left:8px;top:8px;background:#343b5ddd;border:2px solid #d9cedf;padding:5px 8px;color:#fff;font:800 10px 'Courier New',monospace}.near-pill{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);background:#fff6dc;border:2px solid #4d5067;padding:4px 8px;min-width:160px;text-align:center;white-space:nowrap;font:900 11px 'Courier New',monospace;display:none}.near-pill.show{display:block}.help-line{font-size:12px;font-weight:900;color:#625b79;text-align:center;margin:10px 4px 0}.controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap}.dpad{display:grid;grid-template-columns:repeat(3,41px);grid-template-rows:repeat(2,37px);gap:4px;touch-action:none}.dpad button{background:#e9dbe7;border:2px solid #55506d;border-radius:5px;touch-action:none;font-weight:900;color:#4c456a}.dpad [data-dir="up"]{grid-column:2;grid-row:1}.dpad [data-dir="left"]{grid-column:1;grid-row:2}.dpad [data-dir="down"]{grid-column:2;grid-row:2}.dpad [data-dir="right"]{grid-column:3;grid-row:2}.actions{display:flex;flex-wrap:wrap;gap:8px}.actions .btn{font-size:12px;min-height:45px}.side{background:#f9f2ec;border-left:4px solid #d5c5d1;padding:14px 13px}.side h2{font:1000 13px 'Courier New',monospace;margin:5px 0 10px;color:#834a70}.questbox{border:3px solid #44435e;background:#fffbf0;box-shadow:4px 4px 0 #e2cad7;padding:12px;margin:0 3px 15px 0}.questbox .label{font:1000 11px 'Courier New',monospace;color:#956080}.questbox .next{font:1000 17px 'Courier New',monospace;color:#35344f;margin:5px 0 8px}.questbox p{font-size:12px;line-height:1.5;margin:0}.minimap{background:#b6d4cb;border:3px solid #5c5a74;display:block;width:100%;image-rendering:pixelated}.dest{margin-top:7px;font:800 11px 'Courier New',monospace;color:#71637a}.steps{margin:10px 0;padding:0;list-style:none;display:grid;gap:6px}.steps li{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.3;padding:7px;border:2px solid #eadfe3;background:#fbf7f4}.steps li b{display:inline-grid;place-items:center;flex:0 0 20px;height:20px;background:#e7dfe8;border:1px solid #897c98;font:900 10px 'Courier New',monospace}.steps li.active{border-color:#cc7b9b;background:#fce4eb;font-weight:900}.steps li.active b{background:#ef9fb6}.steps li.done{color:#648d82}.steps li.done b{background:#acddc7}.toggle-row{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}.toggle{border:2px solid #59536e;background:#e6e0e9;font:800 11px 'Courier New',monospace;padding:7px;flex:1}.toggle.on{background:#a5dcc5}.side-note{font-size:11px;color:#796c80;line-height:1.5}.modal{position:fixed;inset:0;background:rgba(20,22,38,.77);z-index:30;display:none;align-items:center;justify-content:center;padding:12px}.modal.open{display:flex}.modalbox{width:min(720px,97vw);max-height:94vh;overflow:auto;background:#fff9ed;border:5px solid #3b3a56;box-shadow:9px 9px 0 #a27599;padding:21px}.modalhead{display:flex;align-items:center;justify-content:space-between;gap:12px}.modalhead h2{font:1000 clamp(15px,2.7vw,21px) 'Courier New',monospace;color:#925373;line-height:1.4;margin:9px 0}.modalbox .question{font-size:18px;line-height:1.45;font-weight:900}.info{background:#edf1eb;padding:10px 12px;border-left:5px solid #97c8b2;font-size:13px}.options{display:grid;gap:8px;margin:14px 0}.opt{border:2px solid #625c77;text-align:left;padding:11px 13px;background:#fff;transition:background .15s;font-size:14px;font-weight:800;color:#303045}.opt:hover:not(:disabled){background:#f7e5ef}.opt.correct{background:#bfead8;border-color:#448973}.opt.wrong{background:#fbd0d5;border-color:#c46e79}.feedback{display:none;border:3px solid #8cad9e;background:#edf8ed;padding:13px;font-size:13px;line-height:1.55;margin-bottom:13px}.feedback.open{display:block}.feedback strong{display:block;font:1000 15px 'Courier New',monospace;margin-bottom:8px;color:#426953}.modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:12px}.lab{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}.lab th,.lab td{padding:7px 6px;text-align:left;border:1px solid #d3c5d2}.lab th{background:#e9e0ef}.lab tr:nth-child(odd){background:#fdf7fa}.labbox{margin:12px 0}.labbox summary{cursor:pointer;font-weight:900;color:#7d517b}.end{padding:22px;min-height:630px;background:linear-gradient(135deg,#d6e9df,#f2d8e4);display:flex;align-items:center;justify-content:center}.endcard{max-width:690px;background:#fff9ed;border:5px solid #45405c;box-shadow:8px 8px 0 #afa2bd;padding:30px}.endcard h1{font:1000 clamp(20px,3.2vw,27px) 'Courier New',monospace;color:#91597d}.endcard p{line-height:1.6}.endcard .bigscore{font:1000 24px 'Courier New',monospace;color:#597f74}.footer{color:#d4cbe1;font:600 11px/1.6 'Trebuchet MS',sans-serif;text-align:center;margin-top:24px;padding:0 8px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{border-left:none;border-top:4px solid #d5c5d1}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.minimap{max-width:250px}}@media(max-width:530px){.masthead .right{display:none}.stage-intro{padding:12px}.storypanel{padding:15px}.storypanel p{font-size:14px}.cinema canvas{aspect-ratio:16/9}.playarea{padding:9px}.steps{grid-template-columns:1fr}.modalbox{padding:13px}.modalbox .question{font-size:15px}.game-top{padding:8px}.hud-title{font-size:10px}.score{font-size:10px}.side{padding:12px}.controls{justify-content:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* Edição 4 — close de cômodo: o quiz não bloqueia mais o mapa em um modal externo. */
+.playarea{position:relative;min-width:0}
+.canvas-wrap #roomFocus{display:none;width:100%;height:auto;aspect-ratio:512/230;image-rendering:pixelated;image-rendering:crisp-edges}
+.room-caption{display:none;position:absolute;bottom:9px;left:9px;right:9px;pointer-events:none;background:#37334edc;color:#fff5df;border:2px solid #ddbbc8;padding:5px 9px;letter-spacing:.5px;font:1000 11px 'Courier New',monospace;box-shadow:3px 3px #302d49}
+#game.in-conversation .canvas-wrap #world{display:none}
+#game.in-conversation .canvas-wrap #roomFocus{display:block}
+#game.in-conversation .room-caption{display:block}
+#game.in-conversation .canvas-pill,#game.in-conversation .near-pill,#game.in-conversation .help-line,#game.in-conversation .controls{display:none}
+#game.in-conversation .canvas-wrap{border-color:#735d80;box-shadow:5px 5px 0 #e7b3c8}
+#game .modal{position:static;inset:auto;background:none;z-index:auto;display:none;padding:0;margin:14px 1px 8px;align-items:initial;justify-content:initial}
+#game .modal.open{display:block;animation:dialog-pop .22s ease-out}
+#game .modalbox{width:100%;max-height:none;overflow:visible;border:4px solid #48415e;box-shadow:5px 5px 0 #d7aec1;padding:16px;background:#fffaf0}
+#game .modalhead h2{margin:6px 0 8px}
+#game .modalbox .question{font-size:17px;margin:14px 0 10px}
+#game .modalbox .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:11px 0}
+#game .modalbox .opt{min-height:64px;border:3px solid #75677c;background:#fff9f8;box-shadow:3px 3px 0 #ead5da;position:relative}
+#game .modalbox .opt:hover:not(:disabled){background:#ffebf1;border-color:#bf789d;transform:translateY(-1px)}
+#game .modalbox .opt:disabled{cursor:default}
+#game .modalbox .opt.correct{background:#c9f1e0;border-color:#4d9b80;box-shadow:3px 3px 0 #a4d2bb}
+#game .modalbox .opt.wrong{background:#ffe1e4;border-color:#c66f83;box-shadow:3px 3px 0 #f3bcc1}
+#game .modalbox .feedback.open{animation:dialog-pop .2s ease-out}
+#game .modalbox .info{background:#efe9f1;border-left:5px solid #c594b5}
+#game .modalbox .kicker{background:#f9d2dd}
+.volume-control{background:#fff9f0;border:2px solid #aca2b6;padding:9px 9px 7px;margin-top:11px;box-shadow:3px 3px 0 #e8d7e3}
+.volume-control label{display:flex;align-items:center;justify-content:space-between;gap:7px;font:900 11px 'Courier New',monospace;color:#67526b}
+.volume-control strong{color:#8d5076;font-size:13px}
+.volume-control input{width:100%;accent-color:#bd769d;cursor:pointer;min-height:20px;margin:7px 0 1px}
+.volume-control span{display:block;color:#85798a;font-size:10px;line-height:1.4}
+@keyframes dialog-pop{from{opacity:.1;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:580px){#game .modalbox{padding:12px}#game .modalbox .options{grid-template-columns:1fr}#game .modalbox .opt{min-height:45px}#game .modalbox .question{font-size:15px}.room-caption{font-size:9px;bottom:5px;padding:4px 5px}}
+@media(prefers-reduced-motion:reduce){#game .modal.open,#game .modalbox .feedback.open{animation:none}}
+
+.stage:not(.active){display:none}.stage.end.active{display:flex}
+
+/* EDIÇÃO 16-BIT: detalhes cromáticos, bordas em camadas e UI de RPG clássico. */
+:root{--night:#20243b;--outline:#373450;--paper:#fff4de;--pink:#e88aaa;--mint:#83d5b9}
+body{background:radial-gradient(circle at 30% 5%,#4c4c7a 0,transparent 32%),repeating-linear-gradient(0deg,transparent 0 23px,#1a1c302e 24px 25px),#1d2039}
+.shell{margin-top:18px}
+.shellcard{border:5px solid #171c35;box-shadow:0 0 0 4px #8b79a0,0 0 0 7px #39354f,0 15px 0 #14162a}
+.masthead strong{color:#fff2e5;text-shadow:3px 3px #bd6d9b,6px 6px #373351;letter-spacing:-.5px}
+.masthead .sub{color:#b3f3e0}
+.chip{background:#3f3b64;border:2px solid #a78eae;box-shadow:2px 2px 0 #1a1a31}
+.stage-intro{position:relative;background:repeating-linear-gradient(45deg,#e8d5e8 0 11px,#e2d6e9 12px 16px,#f3dae3 17px 22px)}
+.cinema{border:5px solid #393450;box-shadow:6px 6px 0 #b48cac,8px 8px 0 #514867}
+.storypanel{background:#fff9ea;border-color:#595073;box-shadow:6px 6px 0 #c59aaf}
+.storypanel h1{color:#91506c;text-shadow:1px 1px #edc3d1}
+.storypanel p{font-size:16px}
+.btn{border-radius:0;border:3px solid #393650;box-shadow:4px 4px 0 #6a4c6e;background:linear-gradient(180deg,#ffc1d1,#e89bb5);text-shadow:0 1px #ffffff80}
+.btn.green{background:linear-gradient(180deg,#c4f1d9,#8dd5b8)}
+.btn.sand{background:linear-gradient(180deg,#fff2bf,#f4d18d)}
+.btn.ghost{background:linear-gradient(180deg,#f7eef6,#dfcfeb)}
+.btn:hover:not(:disabled){filter:saturate(1.15) brightness(1.02)}
+.btn:active{box-shadow:2px 2px 0 #6a4c6e}
+.game-top{background:repeating-linear-gradient(90deg,#faf0dd 0 13px,#fcf4e5 14px 27px)}
+.canvas-wrap{border:5px solid #403950;box-shadow:5px 5px 0 #b39caf}
+.canvas-pill,.room-caption,.kicker{border-radius:0;box-shadow:2px 2px 0 #4d4760}
+.side{background:repeating-linear-gradient(0deg,#faf3e7 0 31px,#f7efdf 32px 34px)}
+.questbox{background:#fffaf0;box-shadow:4px 4px 0 #d6b3c8}
+.steps li.active{border:2px solid #a95c8c;background:#ffe4ed;box-shadow:2px 2px 0 #d6b1c9}
+.toggle{box-shadow:2px 2px 0 #756b81;border-radius:0}
+.toggle.on{background:#9addbd}
+#game .modalbox{background:#fff7e7;border:4px solid #4a3e62;box-shadow:5px 5px 0 #b889aa}
+#game .modalbox .opt{border-radius:0;box-shadow:3px 3px 0 #cfb2c7}
+#game .modalbox .opt:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #c6a2b7}
+.start-overlay{position:absolute;inset:0;z-index:10;display:grid;place-items:center;background:linear-gradient(#252941dc,#1e2435ed);padding:24px;text-align:center}
+.start-overlay.hidden{display:none}
+.start-panel{width:min(470px,100%);border:5px solid #f7dcae;outline:5px solid #544763;background:repeating-linear-gradient(0deg,#343953 0 11px,#363b58 12px 22px);color:#fff4e5;box-shadow:10px 10px 0 #1b1c2f;padding:28px 24px}
+.start-eyebrow,.start-foot{font:900 11px/1.6 'Courier New',monospace;color:#b0ddc8}
+.start-eyebrow{margin:5px 0 12px;letter-spacing:.8px}
+.start-stars{font:900 23px 'Courier New',monospace;color:#ffdeb0}
+.start-panel h1{margin:3px 0 12px;font:1000 clamp(27px,5vw,45px) 'Courier New',monospace;letter-spacing:-1px;color:#fff7e5;text-shadow:4px 4px 0 #de7597}
+.start-panel h1 span{color:#ffbdd5}
+.start-panel p{font-size:15px;line-height:1.6;margin:8px 0 22px}
+.startbtn{width:min(330px,100%);min-height:55px;font:1000 14px 'Courier New',monospace;animation:btn-glow 1.8s infinite alternate}
+.start-silent{display:block;margin:11px auto 21px;color:#d3d0e2;text-decoration:underline;border:0;background:transparent;font-size:12px;font-weight:800}
+.start-silent:hover{color:#fff}
+.start-foot{color:#b9b5ce;font-size:10px}
+@keyframes btn-glow{from{filter:brightness(1)}to{filter:brightness(1.11)}}
+@media(max-width:530px){.start-overlay{padding:15px}.start-panel{padding:19px 12px}.start-panel p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.startbtn{animation:none}}
+
+/* V6 — interface para celular, controles por toque e missão sempre visível. */
+.mobile-mission{display:none}
+.restart-mobile{display:none}
+.dpad button.is-held{background:#f9c6db;box-shadow:inset 2px 3px 0 #ad7897;transform:translate(1px,1px)}
+@media(max-width:700px){
+ html,body{overscroll-behavior-y:auto}
+ .shell{width:100%;margin:0 auto 12px}
+ .masthead{padding:10px 14px 12px}
+ .masthead strong{font-size:21px}
+ .masthead .sub{font-size:10px}
+ .shellcard{border-width:3px;box-shadow:none;min-height:0}
+ .game-top{padding:7px 12px;gap:4px}
+ .game-top .hud-title{font-size:10px}
+ .game-top .small{display:none}
+ .game-top .score{font-size:11px;gap:9px}
+ .mobile-mission{display:block;background:#fff3da;border-bottom:3px solid #9b7a9b;padding:8px 12px 9px;box-shadow:inset 0 2px 0 #fff9e9}
+ .mobile-mission-label{font:900 10px/1.35 'Courier New',monospace;color:#985777;letter-spacing:.4px}
+ .mobile-mission-main{display:flex;align-items:center;justify-content:space-between;font:1000 16px/1.25 'Courier New',monospace;color:#39364d;margin:2px 0}
+ #mobileMissionArrow{display:inline-grid;place-items:center;min-width:34px;height:30px;background:#f6c4da;border:2px solid #975f83;font-size:22px;color:#8e416a;line-height:1}
+ #mobileMissionDesc{font-size:11px;color:#625773;line-height:1.35}
+ .playarea{padding:9px 9px 15px}
+ .canvas-wrap{border-width:4px;box-shadow:3px 3px 0 #b39caf}
+ .canvas-pill{font-size:9px;padding:4px}
+ .near-pill{min-width:0;max-width:95%;overflow:hidden;text-overflow:ellipsis;font-size:10px;bottom:5px}
+ .help-line{font-size:11px;line-height:1.35;margin:10px 5px 4px}
+ #game.active:not(.in-conversation){padding-bottom:calc(144px + env(safe-area-inset-bottom,0px))}
+ #game.active:not(.in-conversation) .controls{
+   position:fixed;bottom:0;left:0;right:0;z-index:25;
+   margin:0;display:flex;align-items:center;justify-content:center;
+   padding:8px max(11px,env(safe-area-inset-right,11px)) calc(9px + env(safe-area-inset-bottom,0px)) max(11px,env(safe-area-inset-left,11px));
+   gap:clamp(9px,3vw,16px);
+   background:linear-gradient(180deg,#faf0e6f5,#eee0e4f8);
+   border-top:4px solid #51435f;
+   box-shadow:0 -4px 0 #d6b5ca,0 -9px 24px #27203944;
+   -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)
+ }
+ .dpad{
+  --keysize:clamp(48px,15.5vw,61px);
+  flex:none;display:grid;grid-template-columns:repeat(3,var(--keysize));grid-template-rows:repeat(2,var(--keysize));
+  gap:3px;touch-action:none;-webkit-user-select:none;user-select:none;
+ }
+ .dpad button{
+  border:3px solid #4e4665;border-radius:9px;
+  color:#4b3e65;font-size:clamp(18px,5vw,23px);font-family:Arial,sans-serif;
+  background:linear-gradient(150deg,#fff3fa,#e6bcd0);
+  box-shadow:0 3px 0 #8e6e89;
+  touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;
+ }
+ .dpad button.is-held,.dpad button:active{background:#a9e1ce;box-shadow:inset 0 3px 0 #7bac9b}
+ .actions{flex:1;max-width:220px;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+ .actions .btn{width:100%;min-width:0;min-height:45px;padding:5px 3px;font:1000 clamp(10px,3vw,13px) 'Courier New',monospace;line-height:1.15;touch-action:manipulation;white-space:normal}
+ .actions #interact{min-height:62px;background:linear-gradient(180deg,#bdf6dd,#7edbb9);border-color:#426f68}
+ .actions #restart{display:none}
+ .actions .desktop-e{display:none}
+ .restart-mobile{display:block;width:100%;margin:4px 0 14px;min-height:43px}
+ .side{padding:12px}
+ .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .modalbox .opt{touch-action:manipulation}
+ #game.in-conversation .modal{margin-top:9px}
+ #game.in-conversation .modalbox .opt{min-height:58px;font-size:14px;line-height:1.3}
+ #game.in-conversation .modal-actions{display:grid;grid-template-columns:1fr;gap:10px}
+ #game.in-conversation .modal-actions .btn{width:100%;min-height:51px}
+ .end{min-height:0;padding:14px}
+ .endcard{padding:17px}
+}
+@media(max-width:375px){.steps{grid-template-columns:1fr}.masthead strong{font-size:19px}.dpad{--keysize:clamp(45px,14vw,53px)}.actions{max-width:160px}}
+@media(max-height:490px) and (orientation:landscape) and (max-width:900px){
+ #game.active:not(.in-conversation) .controls{padding-top:4px;padding-bottom:calc(4px + env(safe-area-inset-bottom,0px))}
+ .dpad{--keysize:44px}
+ .actions #interact{min-height:49px}
+ .actions .btn{min-height:35px}
+}
+
+/* V7 — seleção de personagens, duas fases e perguntas em sequência. */
+.stage-pick{min-height:630px;padding:24px;background:linear-gradient(135deg,#e8d7ec,#f9e5de 54%,#d9efe2)}
+.pick-head{text-align:center;max-width:800px;margin:0 auto 23px}.pick-head h1{color:#654c76;font:1000 clamp(24px,4vw,36px) 'Courier New',monospace;letter-spacing:-1px;margin:10px 0}.pick-head p{font-size:14px;line-height:1.5}
+.character-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.character-card{border:4px solid #55506c;background:#fff9ec;box-shadow:5px 5px 0 #b7a4b5;min-width:0;padding:12px 8px;text-align:center;color:#3f3b59;transition:transform .12s;cursor:pointer}
+.character-card.selected{background:#e4fff1;border-color:#3d846a;box-shadow:5px 5px 0 #86cbaa;transform:translateY(-3px)}
+.character-card canvas{width:100%;max-width:135px;aspect-ratio:1;image-rendering:pixelated;display:block;margin:0 auto 6px;background:linear-gradient(#d8d4e7,#c8dcd8)}
+.character-card .char-name{font:1000 19px 'Courier New',monospace;display:block}.character-card .char-trait{display:block;font-size:12px;font-weight:800;min-height:38px;line-height:1.3;margin-top:6px}
+.character-card .char-label{display:block;font:900 10px 'Courier New',monospace;color:#936981;margin-top:8px}
+.pick-footer{display:flex;gap:15px;align-items:center;justify-content:space-between;max-width:750px;margin:25px auto 0}.pick-selection{font:900 14px 'Courier New',monospace}
+.stage-chapter{min-height:630px;background:radial-gradient(circle at 25% 28%,#6b607c 0,transparent 35%),linear-gradient(140deg,#2a3652,#475e6c);padding:30px 15px;display:none;color:#f9eee5;text-align:center}
+.stage-chapter.active{display:flex;align-items:center;justify-content:center}.chapter-inner{max-width:800px;margin:auto}.chapter-inner h1{font:1000 clamp(24px,4.2vw,44px)/1.25 'Courier New',monospace;text-shadow:4px 4px #2a2948}.chapter-inner h1 span{color:#b4ecd5}.chapter-inner p{line-height:1.6}.chapter-emoji{font-size:44px;letter-spacing:8px;margin:16px 0}.chapter-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:27px 0}.chapter-columns>div{border:3px solid #c3b7d0;background:#39465f;padding:13px 10px;font-size:15px}.chapter-columns b{color:#ffd9ac;font:900 11px 'Courier New',monospace}.chapter-columns small{color:#cee7e1}.stage-chapter .small{color:#c7d5d5}
+.phase-pill{border:2px solid #635276;background:#e8d2eb;color:#644468;font:1000 10px 'Courier New',monospace;padding:5px 8px}
+.question-indicator{font:900 11px 'Courier New',monospace;color:#936184;margin:10px 0 0}
+#game .steps li{min-width:0}
+@media(max-width:700px){.stage-pick{padding:14px 10px;min-height:0}.character-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.character-card{padding:9px 7px}.character-card canvas{max-width:115px}.character-card .char-name{font-size:16px}.character-card .char-trait{font-size:11px;min-height:28px}.pick-footer{flex-wrap:wrap;justify-content:center}.pick-footer .btn{width:100%}.chapter-columns{grid-template-columns:1fr}.stage-chapter{min-height:0;padding:30px 16px}.chapter-emoji{font-size:30px}.chapter-columns{gap:7px}.chapter-columns>div{padding:8px}.phase-pill{width:100%;text-align:center}}
+
+/* V8 — Layout dedicado a celulares; mantém teclado e a mesma história no computador. */
+.mobile-utility-bar{display:none}
+@media(max-width:700px){
+  html{-webkit-text-size-adjust:100%;touch-action:pan-y}
+  body{overflow-x:hidden}
+  .mobile-utility-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#e8f5ed;border-bottom:3px solid #8daf9b;padding:6px 9px;color:#34594e;font:800 10px/1.3 'Courier New',monospace}
+  .mobile-utility-bar span{flex:1}
+  #fullscreenMobile{flex:none;border:2px solid #4c6a61;background:#b5e6cc;color:#294c43;border-radius:4px;min-height:34px;padding:4px 7px;font:900 10px 'Courier New',monospace;touch-action:manipulation}
+  .canvas-wrap canvas{touch-action:manipulation}
+  .controls{user-select:none;-webkit-user-select:none}
+  .opt,.btn{touch-action:manipulation}
+  #game.active:not(.in-conversation){padding-bottom:calc(158px + env(safe-area-inset-bottom,0px))}
+  .character-card{touch-action:manipulation}
+  .storypanel .btn{min-height:50px}
+  .dpad button{outline-offset:2px}
+  #game .modalbox{width:min(100%,640px)}
+}
+@media(max-width:390px){
+  .mobile-utility-bar{font-size:9px}
+  #fullscreenMobile{font-size:9px;padding:4px 5px}
+  .canvas-pill{font-size:8px}
+}
+@media(max-width:340px){
+  .mobile-utility-bar span{max-width:150px}
+  #game .dpad{--keysize:43px}
+  #game .actions{max-width:145px}
+}
+</style></head>
+<body><main class="shell"><header class="masthead"><div><strong>✚ MED QUEST</strong><div class="sub">DPP + ENZIMAS <span style="color:#f2c5d4">/ EDIÇÃO MOBILE · 16-BIT</span></div></div><div class="right"><span class="chip">2 FASES · 13 QUESTÕES · RPG</span><span class="chip">JOGO EDUCATIVO</span></div></header><div class="shellcard">
+<section class="stage stage-pick" id="pick">
+  <div class="pick-head"><span class="kicker">SELEÇÃO DE PERSONAGEM · 01/02</span><h1>QUEM ESTÁ DE PLANTÃO?</h1><p>Escolha quem vai explorar a maternidade. O personagem aparece no mapa e nos diálogos. A dificuldade e o conteúdo são iguais para todos.</p></div>
+  <div class="character-grid" id="characterGrid"></div>
+  <div class="pick-footer"><div class="pick-selection" id="pickSelection">Personagem: Lia</div><button class="btn green" id="confirmCharacter">ESCOLHER E COMEÇAR →</button></div>
+</section>
+<section class="stage stage-chapter" id="interlude">
+  <div class="chapter-inner"><span class="kicker">FASE 1 CONCLUÍDA ✓</span><div class="chapter-emoji">✦ 🧬 ✦</div>
+  <h1>FASE 2<br><span>ENZIMAS NA GESTAÇÃO FISIOLÓGICA</span></h1>
+  <p id="chapterWelcome">Você investigou o caso obstétrico. Agora é hora de compreender o que muda numa gestação saudável.</p>
+  <div class="chapter-columns"><div><b>ESTAÇÃO 01</b><br>Obstetra Bia<br><small>Aromatase e placenta</small></div><div><b>ESTAÇÃO 02</b><br>Técnico Rui<br><small>FA, AST e ALT</small></div><div><b>ESTAÇÃO 03</b><br>Bioquímica Sol<br><small>GGT e LDH</small></div></div>
+  <button class="btn green" id="startPhase2">ENTRAR NA FASE 2 →</button><p class="small">Três atendentes • Duas perguntas por atendente • Seis questões</p></div>
+</section>
+<section class="stage stage-intro active" id="intro"><div class="intro-top"><span class="kicker" id="chapter">PRÓLOGO · 01/04</span><span class="small pixel">CASO M.C.N. + FISIOLOGIA</span></div><div class="cinema"><canvas class="pixel-art" id="storyCanvas" width="512" height="240" aria-label="Cena animada em pixel art da chegada da ambulância à maternidade"></canvas><div class="cinema-label" id="cinemaCaption">CHEGADA À MATERNIDADE</div></div><div class="storypanel"><h1 id="storyTitle"></h1><p id="storyText"></p><div class="storybottom"><div class="dots" id="dots"></div><button class="btn green" id="storyNext">CONTINUAR →</button></div></div><div class="start-overlay" id="startOverlay" role="group" aria-label="Início do jogo"><div class="start-panel"><span class="start-stars">✦ ✚ ✦</span><div class="start-eyebrow">RPG EDUCATIVO · ESTILO 16-BIT</div><h1>MED <span>QUEST</span></h1><p>Uma emergência obstétrica.<br>Duas fases. Treze desafios educativos.</p><button class="btn green startbtn" id="startWithSound">♫ COMEÇAR COM SOM</button><button class="start-silent" id="startSilent">Começar sem som</button><div class="start-foot">A música começa no primeiro clique.<br>Depois, escolha seu personagem.</div></div></div></section>
+<section class="stage" id="game"><div class="game-top"><div class="phase-pill" id="phasePill">FASE 1 · EMERGÊNCIA OBSTÉTRICA</div><div class="hud-title">✚ MATERNIDADE SANTA AURORA <span class="small">(fictícia)</span></div><div class="score"><span>⭐ <span id="score">000</span> PTS</span><span>📋 <span id="progress">0/13</span> QUESTÕES</span></div></div><div class="mobile-mission" id="mobileMission" aria-live="polite"><div class="mobile-mission-label">🎯 OBJETIVO ATUAL · <span id="mobileMissionCount">1/7</span></div><div class="mobile-mission-main"><span id="mobileMissionRoom">TRIAGEM</span><span id="mobileMissionArrow">↖</span></div><div id="mobileMissionDesc">Encontre Ana na triagem</div></div><div class="mobile-utility-bar" aria-label="Acessibilidade para celular"><span>🎮 Segure as setas para andar e toque em CONVERSAR.</span><button type="button" id="fullscreenMobile" title="Tentar jogar em tela cheia">⛶ TELA CHEIA</button></div><div class="layout"><div class="playarea"><div class="canvas-wrap"><canvas id="world" width="512" height="320" aria-label="Mapa da maternidade em pixel art, com personagem movimentável"></canvas>
+<canvas id="roomFocus" width="512" height="230" aria-label="Cena ampliada do cômodo em pixel art com estudante e profissional conversando"></canvas>
+<div class="room-caption" id="roomCaption" aria-live="polite">DIÁLOGO NA MATERNIDADE</div><div class="canvas-pill" id="loc">📍 CORREDOR</div><div class="near-pill" id="near">TOQUE EM CONVERSAR</div></div><p class="help-line" id="hint">No celular: segure as setas e toque em CONVERSAR perto do profissional. No computador: WASD/setas + E.</p><div class="controls"><div class="dpad" id="touchDpad" aria-label="Direcional de movimento. Mantenha uma seta pressionada para andar."><button data-dir="up" aria-label="Cima">▲</button><button data-dir="left" aria-label="Esquerda">◀</button><button data-dir="down" aria-label="Baixo">▼</button><button data-dir="right" aria-label="Direita">▶</button></div><div class="actions"><button class="btn green" id="interact" aria-label="Conversar com o profissional próximo">💬 <span class="interact-label">CONVERSAR</span><span class="desktop-e"> (E)</span></button><button class="btn sand" id="guideBtn">📍 ONDE IR?</button><button class="btn ghost" id="restart">↻ RECOMEÇAR</button></div></div></div><aside class="side"><h2>📋 SEU PLANTÃO</h2><div class="questbox"><div class="label" id="missionLabel">FASE 1 · ESTAÇÃO 1 DE 7</div><div class="next" id="missionTitle">TRIAGEM</div><p id="missionText">Converse com a enfermeira Ana.</p><div class="dest" id="distance">DESTINO: ...</div></div><canvas class="minimap" id="minimap" width="208" height="130" aria-label="Minimapa indicando personagem e destino"></canvas><button class="btn ghost restart-mobile" id="restartMobile">↻ RECOMEÇAR O JOGO</button><h2>ROTEIRO DAS SALAS</h2><ol class="steps" id="steps"></ol><div class="toggle-row"><button class="toggle on" id="sfxButton" aria-pressed="true">🔊 EFEITOS ON</button><button class="toggle on" id="musicButton" aria-pressed="true">♫ MÚSICA ON</button></div>
+<div class="volume-control"><label for="volumeSlider">🔊 VOLUME DOS SONS <strong id="volumeText">88%</strong></label><input id="volumeSlider" type="range" min="0" max="100" step="5" value="88" aria-label="Volume dos sons do jogo" /><span>Você pode aumentar ou diminuir os sons do plantão.</span></div><p class="side-note">Os sons são originais e gerados pelo navegador. A música começa na introdução quando você escolhe jogar com som. Funciona também sem internet.</p></aside></div></section>
+<section class="stage end" id="end"><div class="endcard"><span class="kicker">AS DUAS FASES CONCLUÍDAS ✓</span><h1>Plantão finalizado!</h1><p>Você investigou o caso M.C.N. na emergência obstétrica e revisou as principais alterações enzimáticas de uma gestação fisiológica.</p><p class="bigscore" id="finalScore">0 / 1300 PTS</p><p id="resultText"></p><p><b>Para revisar:</b> DPP é uma emergência obstétrica, e o caso representa uma simulação acadêmica. Na prática, a assistência e a avaliação materno-fetal ocorrem em paralelo e não aguardam a conclusão de um quiz.</p><p class="small">Referências para leitura: <a target="_blank" rel="noopener" href="https://www.merckmanuals.com/professional/gynecology-and-obstetrics/antenatal-complications/placental-abruption-abruptio-placentae">Merck Manual — DPP</a> e <a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10176440/">revisão AJOG — DPP e coagulopatia</a>; <a target="_blank" rel="noopener" href="https://www.ncbi.nlm.nih.gov/books/NBK482201/">NCBI — exames hepáticos na gestação</a>; <a target="_blank" rel="noopener" href="https://www.perinatology.com/Reference/Reference%20Ranges/LDH.htm">Referência gestacional de LDH</a>.</p><button class="btn green" id="playAgain">JOGAR NOVAMENTE ↻</button></div></section></div>
+<div class="footer">Protótipo acadêmico fictício • a história não corresponde a atendimento real • valores laboratoriais fornecidos no caso e sujeitos a variação de referência.</div></main>
+<div class="modal" id="modal" role="region" aria-labelledby="modalTitle"><div class="modalbox"><span class="kicker" id="modalKicker">DESAFIO</span><div class="modalhead"><h2 id="modalTitle"></h2></div><div class="info" id="modalDetail"></div><div class="labbox" id="labbox"></div><div class="question-indicator" id="questionIndicator"></div><p class="question" id="modalQuestion"></p><div class="options" id="options"></div><div class="feedback" id="feedback" role="status" aria-live="polite"></div><div class="modal-actions"><button class="btn ghost" id="closeModal">VOLTAR AO MAPA</button><button class="btn green" id="complete" style="display:none">PRÓXIMA MISSÃO →</button></div></div></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const story=[
+{title:'Um chamado urgente',text:'Você é estudante de medicina em um plantão supervisionado. A equipe recebe uma ligação: uma gestante está a caminho da maternidade, em uma ambulância, com sinais de alerta obstétrico.',cap:'01 · AMBULÂNCIA A CAMINHO'},
+{title:'Conheça M.C.N.',text:'M.C.N. tem 35 anos, está com 33 semanas de gestação e possui hipertensão crônica. De repente, começou a sentir dor abdominal intensa e apresentou sangramento vaginal escuro.',cap:'02 · A PACIENTE M.C.N.'},
+{title:'A avaliação inicial',text:'Na chegada, a equipe observa útero rígido e doloroso, alteração importante da frequência cardíaca fetal e, posteriormente, sangramento nos locais de punção. Há suspeita de descolamento prematuro de placenta (DPP) e coagulopatia.',cap:'03 · SINAIS DE EMERGÊNCIA'},
+{title:'Seu primeiro plantão de aprendizado',text:'Enquanto a equipe experiente cuida da paciente, você percorrerá sete estações didáticas nesta primeira fase para entender o caso. Comece pela TRIAGEM, converse com Ana e siga as indicações para cada próxima sala. Não é uma simulação de tomada de decisão assistencial.',cap:'04 · EXPLORAÇÃO DA MATERNIDADE'}
+];
+const labs=[['sFlt-1','8.000 pg/mL','773–5.165 pg/mL*'],['Fibrinogênio','110 mg/dL','350–600 mg/dL*'],['D-dímero','8.500 ng/mL','Até ~1.500 ng/mL*'],['TP / RNI','2,1','0,8–1,2*'],['Plaquetas','60.000/mm³','150.000–450.000/mm³*'],['Antitrombina III','45%','80–120%*']];
+const caseQuiz=[
+{who:'Enfermeira Ana',room:'TRIAGEM',subtitle:'Sinais clínicos de alerta',instruction:'Vá à TRIAGEM (sala superior esquerda) e converse com Ana para identificar o quadro clínico.',detail:'Dor súbita intensa, sangramento vaginal escuro, hipertonia uterina e alteração fetal.',q:'Qual hipótese explica melhor a associação dos sinais apresentados por M.C.N.?',a:['Descolamento prematuro de placenta (DPP)','Placenta prévia isolada, tipicamente indolor','Contrações fisiológicas sem complicações','Hemodiluição fisiológica da gestação'],ok:0,why:'O DPP pode cursar com dor abdominal intensa, útero hipertônico ou doloroso, sangramento vaginal e comprometimento fetal. A perda sanguínea visível pode não refletir toda a hemorragia. A suspeita clínica demanda avaliação obstétrica urgente.'},
+{who:'Obstetra Bia',room:'AVALIAÇÃO',subtitle:'Hipertensão e risco vascular',instruction:'Siga para a AVALIAÇÃO (sala superior central) e fale com a obstetra Bia.',detail:'A paciente apresenta hipertensão arterial crônica e está na 33ª semana.',q:'Por que a hipertensão crônica é relevante para a hipótese de DPP?',a:['Impede a produção de fibrinogênio em toda gestação','Relaciona-se a alterações vasculares e eleva o risco de DPP','Confirma CIVD por si só','Exclui a possibilidade de sofrimento fetal'],ok:1,why:'A hipertensão materna é um fator de risco importante para o DPP e está associada a alterações vasculares uteroplacentárias. Sozinha, ela não confirma nem DPP nem CIVD.'},
+{who:'Técnico Rui',room:'LABORATÓRIO',subtitle:'O papel do fibrinogênio',instruction:'Vá ao LABORATÓRIO (sala superior direita) para conferir o fibrinogênio com Rui.',detail:'Na gestação fisiológica, a concentração de fibrinogênio tende a aumentar.',q:'Como interpretar um fibrinogênio de 110 mg/dL neste contexto?',a:['Elevação fisiológica esperada no terceiro trimestre','Valor irrelevante porque a paciente está grávida','Redução acentuada, compatível com consumo na coagulopatia','Marcador específico de aumento da albumina'],ok:2,why:'O fibrinogênio geralmente aumenta durante a gestação. Um valor de 110 mg/dL é marcadamente reduzido e, neste contexto clínico, é compatível com consumo de fatores de coagulação.'},
+{who:'Hematologista Lila',room:'HEMATOLOGIA',subtitle:'Entendendo a CIVD',instruction:'Desça até a HEMATOLOGIA (sala inferior esquerda) e converse com Lila.',detail:'Sangramento nas punções, plaquetas de 60.000/mm³ e TP/RNI de 2,1.',q:'Qual mecanismo caracteriza a CIVD e explica a associação de microtrombos e sangramento?',a:['Destruição exclusiva de hemácias sem ativação da coagulação','Ativação sistêmica da coagulação com consumo de plaquetas e fatores','Aumento isolado da produção de albumina','Bloqueio completo da formação de fibrina'],ok:1,why:'A CIVD envolve ativação disseminada da coagulação, formação de fibrina e microtrombos, com consumo de plaquetas e fatores. O consumo associado à fibrinólise pode resultar em sangramento.'},
+{who:'Bioquímica Sol',room:'BIOQUÍMICA',subtitle:'A interpretação do D-dímero',instruction:'Siga para a BIOQUÍMICA (sala inferior central) e procure Sol.',detail:'O D-dímero é 8.500 ng/mL. Sua interpretação depende do método laboratorial e do contexto gestacional.',q:'O que a elevação importante do D-dímero indica, neste contexto?',a:['Formação e degradação de fibrina aumentadas','Ausência de ativação da coagulação','Normalização do fibrinogênio','Diagnóstico específico de DPP quando considerado isoladamente'],ok:0,why:'O D-dímero resulta da degradação da fibrina estabilizada. Ele pode aumentar na gestação e não confirma DPP ou CIVD isoladamente; em conjunto com os demais achados, reforça a suspeita de ativação e consumo da coagulação.'},
+{who:'Pesquisadora Nara',room:'PESQUISA',subtitle:'sFlt-1 e antitrombina III',instruction:'Agora visite a PESQUISA (sala inferior direita) e fale com Nara.',detail:'sFlt-1 = 8.000 pg/mL; antitrombina III = 45%.',q:'Qual associação entre os marcadores e suas funções está correta?',a:['sFlt-1 converte fibrinogênio diretamente em fibrina','Antitrombina III atua apenas no transporte de oxigênio','sFlt-1 está ligado à sinalização angiogênica; antitrombina limita a coagulação','Antitrombina III é a enzima que produz D-dímero'],ok:2,why:'O sFlt-1 está ligado à sinalização angiogênica placentária e não é um teste específico de DPP ou CIVD. A antitrombina é um anticoagulante natural. Já a trombina converte fibrinogênio em fibrina.'},
+{who:'Preceptora Jo',room:'CORREDOR CENTRAL',subtitle:'Síntese do caso',instruction:'Volte ao CORREDOR CENTRAL e converse com a preceptora Jo para concluir o raciocínio.',detail:'Integre os sinais clínicos e a diferença entre adaptações gestacionais e coagulopatia patológica.',q:'Qual síntese diferencia melhor a gravidez fisiológica do quadro apresentado?',a:['Na gestação normal, as plaquetas sempre desaparecem do sangue','No DPP com CIVD, toda proteína plasmática necessariamente aumenta','A hemodiluição isolada explica o sangramento nas punções e RNI de 2,1','Na gestação normal há aumento do fibrinogênio; na CIVD grave há consumo de fatores e plaquetas'],ok:3,why:'A gravidez costuma cursar com hemodiluição, redução relativa da concentração de albumina e aumento do fibrinogênio. Já o conjunto de hipofibrinogenemia, plaquetopenia, prolongamento do RNI e sangramento sugere coagulopatia de consumo, interpretada clinicamente.'}
+];
+// Segunda fase: questões fornecidas para o trabalho sobre enzimas na gestação fisiológica.
+// Cada estação libera duas perguntas consecutivas sem obrigar o jogador a caminhar de novo.
+const enzymeQuests=[
+ {npc:1,who:'Obstetra Bia',room:'AVALIAÇÃO',subtitle:'Aromatase e função da placenta',instruction:'Vá à AVALIAÇÃO, sala superior central. Converse com Bia: ela tem duas perguntas.',detail:'Na gestação saudável, a placenta é um órgão endócrino metabolicamente ativo.',questions:[
+  {q:'Durante a gestação, a placenta produz uma enzima chamada aromatase, que participa da síntese de estrogênios. Qual é a principal função das enzimas nesse processo?',a:['Fornecer energia para que a reação aconteça.','Aumentar a velocidade das reações químicas, diminuindo a energia de ativação.','Ser consumidas durante a reação para formar os hormônios.'],ok:1,why:'Enzimas são catalisadores biológicos: reduzem a energia de ativação e aceleram reações sem serem consumidas. A aromatase participa da conversão de andrógenos em estrogênios.'},
+  {q:'Durante a gravidez, algumas enzimas de origem placentária aumentam progressivamente na circulação materna. O que isso demonstra?',a:['Que a placenta possui atividade metabólica e libera substâncias na circulação materna.','Que todas as enzimas placentárias são produzidas exclusivamente pelo fígado materno.','Que o aumento de enzimas no sangue sempre indica destruição celular.'],ok:0,why:'A placenta tem atividades metabólica e endócrina próprias e pode liberar enzimas e outras moléculas na circulação materna. Sua presença não indica, por si só, lesão celular.'}
+ ]},
+ {npc:2,who:'Técnico Rui',room:'LABORATÓRIO',subtitle:'Fosfatase alcalina e aminotransferases',instruction:'Siga ao LABORATÓRIO, sala superior direita. Rui vai apresentar duas questões sobre enzimas.',detail:'Compare o comportamento fisiológico da fosfatase alcalina com o de AST (TGO) e ALT (TGP).',questions:[
+  {q:'Durante uma gestação saudável, é comum observar aumento da fosfatase alcalina (FA) no sangue materno, principalmente no terceiro trimestre. Qual é a principal explicação?',a:['Aumento da produção de enzimas pelo fígado materno devido à sobrecarga metabólica.','Lesão das células hepáticas causada pelo crescimento fetal.','Produção de uma fração da fosfatase alcalina pela placenta.'],ok:2,why:'A fração placentária da fosfatase alcalina contribui para o aumento fisiológico da FA materna, sobretudo no terceiro trimestre. Isso não significa, isoladamente, lesão hepática.'},
+  {q:'Em uma gestante sem complicações, os exames laboratoriais mostram níveis de AST (TGO) e ALT (TGP) dentro dos valores de referência. Qual afirmação está correta?',a:['É uma alteração esperada, pois essas enzimas normalmente aumentam bastante durante a gravidez.','É esperado que essas enzimas permaneçam geralmente estáveis; elevações significativas merecem investigação.','Essas enzimas deixam de ser produzidas pelo fígado durante a gestação.'],ok:1,why:'AST e ALT permanecem geralmente dentro dos intervalos esperados para a gestação, podendo variar discretamente. Elevações significativas não são consideradas uma adaptação fisiológica normal e exigem avaliação.'}
+ ]},
+ {npc:4,who:'Bioquímica Sol',room:'BIOQUÍMICA',subtitle:'GGT e lactato desidrogenase',instruction:'Desça até a BIOQUÍMICA, sala inferior central. Sol fará as duas últimas questões.',detail:'Diferencie variações fisiológicas dos resultados que precisam de investigação.',questions:[
+  {q:'Durante a gestação fisiológica, a enzima gama-glutamiltransferase (GGT), utilizada na avaliação de alterações hepatobiliares, geralmente apresenta qual comportamento?',a:['Aumenta progressivamente até o final da gestação.','Permanece geralmente normal ou pode apresentar discreta redução.','É produzida exclusivamente pela placenta e aumenta no terceiro trimestre.'],ok:1,why:'Na gestação fisiológica, a GGT costuma ficar em níveis habituais ou apresentar discreta redução. Elevações devem ser interpretadas com outros exames e com a avaliação clínica.'},
+  {q:'Em uma gestação sem complicações, a enzima lactato desidrogenase (LDH) é avaliada em exames laboratoriais. Qual afirmação está correta?',a:['Seu aumento acentuado é uma alteração fisiológica obrigatória da gravidez.','Seus níveis devem aumentar continuamente devido à produção placentária.','Não se espera elevação acentuada da LDH na gestação fisiológica; aumentos importantes precisam ser investigados.'],ok:2,why:'A LDH pode apresentar pequenas variações na gestação normal, mas não se espera elevação acentuada como uma adaptação obrigatória. Aumentos importantes precisam de avaliação para investigar, entre outras possibilidades, hemólise ou lesão tecidual.'}
+ ]}
+];
+// Na primeira fase cada profissional tem uma questão. Na segunda, dois desafios por atendente.
+caseQuiz.forEach((q,i)=>{q.npc=i;q.questions=[{q:q.q,a:q.a,ok:q.ok,why:q.why}];});
+let quiz=caseQuiz,phase=0,questionIndex=0,doneQuestions=0;
+const characters=[
+ {name:'Lia',trait:'Cabelo ondulado · Jaleco coral',label:'Estudante de obstetrícia',shirt:'#e99ab1',hair:'#45324c',skin:'#d8a07e',highlight:'#f2bf9e',hairstyle:'long',glasses:false},
+ {name:'Caio',trait:'Cabelo curto · Jaleco azul',label:'Estudante de medicina',shirt:'#83b9d7',hair:'#292f49',skin:'#ad7559',highlight:'#d09b7e',hairstyle:'short',glasses:true},
+ {name:'Maya',trait:'Coque alto · Jaleco lilás',label:'Estudante de medicina',shirt:'#c5a0da',hair:'#292838',skin:'#805542',highlight:'#a97a5e',hairstyle:'bun',glasses:false},
+ {name:'Theo',trait:'Cabelo ruivo · Jaleco verde',label:'Estudante de medicina',shirt:'#91d2b7',hair:'#94533f',skin:'#edc7a9',highlight:'#ffe0c2',hairstyle:'spiky',glasses:true}
+];
+let chosenIndex=0;
+function chosen(){return characters[chosenIndex]}
+function targetIndex(){return quiz[step]?.npc ?? -1}
+function currentQuestion(){return quiz[step]?.questions[questionIndex]}
+function creditKey(){return `${phase}-${step}-${questionIndex}`}
+function totalForPhase(){return quiz.reduce((n,q)=>n+q.questions.length,0)}
+const NPCS=[{x:92,y:78,c:'#9c99d0',hair:'#4c3a56',name:'ANA'},{x:256,y:78,c:'#a98cce',hair:'#6b4c47',name:'BIA'},{x:420,y:78,c:'#81bcc6',hair:'#685a4e',name:'RUI'},{x:92,y:258,c:'#b1aacd',hair:'#544756',name:'LILA'},{x:256,y:258,c:'#79aa9a',hair:'#544e50',name:'SOL'},{x:420,y:258,c:'#c3a282',hair:'#6e4e47',name:'NARA'},{x:256,y:160,c:'#dd9eaf',hair:'#654858',name:'JO'}];
+let step=0,storyIndex=0,score=0,modalIndex=-1,selected=-1,answered=false,player={x:332,y:165,face:'down',walking:0};const held=new Set();const credited=new Set();let gameTime=0,lastTime=0,nextStepSound=0,guideFlash=0,confetti=[];
+let sfxOn=true,musicOn=false,audio=null,musicTimer=null,beatIndex=0,volumeLevel=.88,roomNpc=0,audioStarted=false;
+const roomCanvas=$('roomFocus'),roomCtx=roomCanvas.getContext('2d');roomCtx.imageSmoothingEnabled=false;
+$('volumeSlider').addEventListener('input',e=>{volumeLevel=Number(e.target.value)/100;$('volumeText').textContent=e.target.value+'%'});
+function initAudio(){try{if(!audio){audio=new (window.AudioContext||window.webkitAudioContext)()}if(audio.state==='suspended')audio.resume()}catch(e){}}
+function tone(freq,duration=0.12,type='sine',vol=0.035,delay=0){if(!audio||volumeLevel===0)return;try{const at=audio.currentTime+delay;const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.setValueAtTime(freq,at);g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(Math.max(.0001,Math.min(.28,vol*(type==='triangle'&&freq<150?2:3.5)*volumeLevel)),at+.013);g.gain.exponentialRampToValueAtTime(.0001,at+duration);o.connect(g);g.connect(audio.destination);o.start(at);o.stop(at+duration+.025)}catch(e){}}
+function fx(id){if(!sfxOn)return;initAudio();if(id==='tap')tone(490,.055,'triangle',.015);if(id==='talk'){tone(410,.09,'square',.012);tone(580,.12,'sine',.018,.08)}if(id==='correct'){tone(520,.13,'triangle',.035);tone(660,.15,'triangle',.032,.11);tone(780,.23,'sine',.04,.24)}if(id==='wrong'){tone(330,.16,'triangle',.021);tone(245,.21,'triangle',.018,.15)}if(id==='quest'){tone(590,.09,'sine',.026);tone(790,.17,'sine',.025,.15)}if(id==='step')tone(92,.04,'triangle',.006)}
+// Trilha original em estilo chiptune, executada inteiramente pelo navegador.
+// O contexto de áudio só pode ser liberado após uma interação do usuário.
+const melody=[392,440,493.88,587.33,493.88,440,392,329.63,
+349.23,392,440,523.25,440,392,349.23,293.66,
+329.63,392,440,493.88,587.33,523.25,493.88,392,
+349.23,329.63,293.66,349.23,392,440,392,329.63];
+const harmonies=[196,174.61,164.81,146.83,174.61,164.81,196,146.83];
+function musicTick(){
+  if(!musicOn||document.hidden||!audioStarted)return;
+  const ix=beatIndex%melody.length,n=melody[ix];
+  // Melodia, eco curto e baixo com timbres próprios de jogos de 16 bits.
+  tone(n,.22,'triangle',.018);
+  if(ix%2===0)tone(n/2,.17,'square',.004,.045);
+  if(ix%4===0)tone(harmonies[Math.floor(ix/4)%harmonies.length],.66,'triangle',.013,.01);
+  if(ix%8===6)tone(784,.05,'sine',.006,.13);
+  beatIndex++;
+}
+function toggleMusic(force){
+  musicOn=force??!musicOn;
+  clearInterval(musicTimer);musicTimer=null;
+  if(musicOn&&audioStarted){initAudio();musicTick();musicTimer=setInterval(musicTick,340)}
+  $('musicButton').textContent=musicOn?'♫ MÚSICA ON':'♫ MÚSICA OFF';
+  $('musicButton').classList.toggle('on',musicOn);
+  $('musicButton').setAttribute('aria-pressed',String(musicOn));
+}
+$('musicButton').onclick=()=>{audioStarted=true;initAudio();toggleMusic()};$('sfxButton').onclick=()=>{sfxOn=!sfxOn;$('sfxButton').textContent=sfxOn?'🔊 EFEITOS ON':'🔇 EFEITOS OFF';$('sfxButton').classList.toggle('on',sfxOn);$('sfxButton').setAttribute('aria-pressed',String(sfxOn));if(sfxOn)fx('tap')};
+document.querySelector('.playarea').appendChild($('modal'));
+function startAdventure(withSound){
+  if(audioStarted&&$('startOverlay').classList.contains('hidden'))return;
+  audioStarted=true;
+  sfxOn=withSound;
+  $('sfxButton').textContent=sfxOn?'🔊 EFEITOS ON':'🔇 EFEITOS OFF';
+  $('sfxButton').classList.toggle('on',sfxOn);
+  $('sfxButton').setAttribute('aria-pressed',String(sfxOn));
+  if(withSound){initAudio();toggleMusic(true);fx('quest')}
+  else toggleMusic(false);
+  $('startOverlay').classList.add('hidden');
+  $('storyNext').disabled=false;
+  stage('pick');drawCharacterCards();
+}
+$('startWithSound').addEventListener('click',()=>startAdventure(true));
+$('startSilent').addEventListener('click',()=>startAdventure(false));
+$('storyNext').disabled=true;
+const cv=$('world'),ctx=cv.getContext('2d'),sc=$('storyCanvas'),sctx=sc.getContext('2d'),mc=$('minimap'),mctx=mc.getContext('2d');for(let g of [ctx,sctx,mctx])g.imageSmoothingEnabled=false;
+function r(g,x,y,w,h,color){g.fillStyle=color;g.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))}function line(g,x,y,w,h,color){r(g,x,y,w,h,color)}function txt(g,str,x,y,color='#33364b',size=9,align='left'){g.fillStyle=color;g.font=`bold ${size}px monospace`;g.textAlign=align;g.fillText(str,Math.round(x),Math.round(y));g.textAlign='left'}
+function heart(g,x,y,t=0){r(g,x,y,3,3,'#fce3c6');r(g,x+4,y,3,3,'#fce3c6');r(g,x-1,y+2,9,4,'#fce3c6');r(g,x+1,y+6,5,2,'#fce3c6');r(g,x+2,y+8,3,2,'#fce3c6');if(t>0)r(g,x+2,y+2,2,2,'#f387a2')}
+function avatar(g,x,y,shirt,face='down',wobble=0,scale=1,preg=false,hair='#52415c',custom=null){
+  const skin=custom?.skin??'#c99578',highlight=custom?.highlight??'#f2c8a8';
+  const walking=Math.abs(wobble)>1.5&&Math.sin(wobble*3)>0;
+  const bob=walking?Math.sin(wobble*4)*1.25:Math.sin(wobble)*.5;
+  g.save();g.translate(Math.round(x),Math.round(y+bob));g.scale(scale,scale);
+  // Multi-shaded 16-bit character with outline, pixels of light and alternating steps.
+  r(g,-9,20,19,3,'#31334a55');r(g,-6,19,14,2,'#4d4c6466');
+  const ls=walking?2:0,rs=walking?-1:0;
+  r(g,-8,13,8,9+ls,'#343650');r(g,1,13+rs,8,9,'#343650');
+  r(g,-7,17+ls,5,3,'#637087');r(g,2,17+rs,5,3,'#637087');
+  r(g,-8,22+ls,8,3,'#343044');r(g,1,22+rs,8,3,'#343044');
+  // Arms behind coat, outlined torso, collar and embroidered cross.
+  r(g,-11,5,5,11,'#52465d');r(g,7,5,5,11,'#52465d');
+  r(g,-10,6,4,8,shirt);r(g,8,6,3,8,shirt);
+  r(g,-10,13,4,5,skin);r(g,8,13,4,5,highlight);
+  r(g,-8,4,17,preg?16:13,'#3d3a55');r(g,-7,5,15,preg?14:11,shirt);
+  r(g,-6,7,3,8,'#fff2ea');r(g,3,6,3,9,'#f5e0e0');
+  r(g,-6,10,3,2,'#e59cb1');r(g,-5,9,1,4,'#e59cb1');
+  r(g,6,8,1,7,'#746b82');
+  if(preg){r(g,-8,11,18,8,shirt);r(g,6,13,4,4,'#ecc4c7')}
+  // Hair silhouette, skin highlight, discreet face expression.
+  r(g,-8,-9,16,11,'#363247');r(g,-7,-12,14,8,hair);
+  r(g,-6,-13,12,3,'#393248');r(g,-6,-11,9,2,'#817084');
+  r(g,-7,-6,14,10,'#5c4455');r(g,-6,-5,12,10,skin);
+  r(g,-5,-4,9,7,highlight);r(g,-6,-7,13,3,hair);
+  r(g,-7,-5,3,7,hair);r(g,6,-5,2,7,hair);
+  if(face==='down'){
+    r(g,-4,-1,2,2,'#363448');r(g,3,-1,2,2,'#363448');
+    r(g,-5,-2,3,1,'#88626c');r(g,2,-2,3,1,'#88626c');
+    r(g,0,1,2,1,'#d78e91');r(g,-1,3,3,1,'#9e5c6a');
+  }else if(face==='left'){
+    r(g,-5,-1,2,2,'#3c394c');r(g,-7,1,2,2,'#f6ccb1');r(g,-5,3,2,1,'#9e6774');
+  }else if(face==='right'){
+    r(g,4,-1,2,2,'#3c394c');r(g,5,1,2,2,'#f6ccb1');r(g,3,3,2,1,'#9e6774');
+  }
+  r(g,-6,-6,2,1,highlight);
+  if(custom){
+    if(custom.hairstyle==='long'){r(g,-9,-6,3,15,hair);r(g,7,-6,3,15,hair);r(g,-9,5,2,5,'#3b3245')}
+    if(custom.hairstyle==='bun'){r(g,0,-17,9,8,'#342e3a');r(g,1,-16,7,7,hair);r(g,-8,-8,3,7,hair)}
+    if(custom.hairstyle==='spiky'){for(let j=0;j<4;j++)r(g,-7+j*4,-15-(j%2)*2,4,5,hair)}
+    if(custom.glasses&&face==='down'){r(g,-6,-1,5,3,'#36364a');r(g,1,-1,5,3,'#36364a');r(g,-1,-1,2,1,'#36364a');r(g,-5,0,3,1,'#d6edec');r(g,2,0,3,1,'#d6edec')}
+  }
+  g.restore();
+}
+
+function drawCharacterCards(){
+ const grid=$('characterGrid');grid.replaceChildren();
+ for(let i=0;i<characters.length;i++){
+   const p=characters[i],btn=document.createElement('button');
+   btn.type='button';btn.className='character-card'+(chosenIndex===i?' selected':'');
+   btn.setAttribute('aria-pressed',String(chosenIndex===i));
+   const canvas=document.createElement('canvas');canvas.width=120;canvas.height=120;
+   const g=canvas.getContext('2d');g.imageSmoothingEnabled=false;
+   r(g,0,0,120,120,i%2?'#c4dae1':'#e5d7e8');
+   for(let yy=75;yy<120;yy+=12)for(let xx=0;xx<120;xx+=12)r(g,xx,yy,11,11,'#dbdacc');
+   r(g,15,18,90,4,'#fff5e7');r(g,17,15,14,3,'#f7bdd1');
+   avatar(g,60,68,p.shirt,'down',0,2.35,false,p.hair,p);
+   const name=document.createElement('span');name.className='char-name';name.textContent=p.name;
+   const trait=document.createElement('span');trait.className='char-trait';trait.textContent=p.trait;
+   const label=document.createElement('span');label.className='char-label';label.textContent=chosenIndex===i?'✓ SELECIONADO':'ESCOLHER';
+   btn.append(canvas,name,trait,label);
+   btn.onclick=()=>{chosenIndex=i;drawCharacterCards();fx('tap')};
+   grid.append(btn);
+ }
+ $('pickSelection').textContent=`Personagem selecionado: ${chosen().name}`;
+}
+$('confirmCharacter').onclick=()=>{
+ storyIndex=0;renderStory();stage('intro');fx('quest');
+};
+function ambulance(g,x,y,blink){r(g,x+4,y+23,97,32,'#f9ece9');r(g,x+5,y+35,95,18,'#eee4ea');r(g,x+16,y+27,42,15,'#b8d9e5');r(g,x+63,y+27,25,15,'#b8d9e5');r(g,x+26,y+42,62,7,'#dc8ca3');r(g,x+32,y+21,19,4,blink?'#ff6d79':'#8c99ec');r(g,x+54,y+21,16,4,blink?'#7d9de6':'#fa788a');r(g,x+18,y+52,18,15,'#3b3949');r(g,x+73,y+52,18,15,'#3b3949');r(g,x+23,y+56,8,8,'#bdc0d2');r(g,x+78,y+56,8,8,'#bdc0d2');r(g,x+97,y+39,4,8,'#ffe8aa');r(g,x+4,y+42,5,7,'#e36d75');r(g,x+58,y+38,4,12,'#fff');r(g,x+54,y+42,12,4,'#fff')}
+// Cena de conversa: personagens continuam dentro do cômodo, em vez de sair para uma janela externa.
+function drawRoomFocus(t){
+  const g=roomCtx,i=Math.max(0,Math.min(6,roomNpc)),n=NPCS[i],q=quiz[step]??caseQuiz[i],pc=chosen();
+  const colors=['#f7c5ce','#c9b6e8','#acdce2','#d7c1e5','#afe0d0','#edd0bd','#edb9cc'];
+  const accent=colors[i];
+  r(g,0,0,512,230,'#5c546e');
+  // Wallpaper, trim and checkered flooring, with soft daylight streaming through the window.
+  r(g,9,8,494,133,'#e8dfe3');
+  for(let yy=17;yy<136;yy+=13)r(g,10,yy,491,1,'#f2e9eb');
+  r(g,9,8,494,10,accent);r(g,9,134,494,7,'#97859a');r(g,9,141,494,89,'#c2cdc9');
+  for(let yy=144;yy<230;yy+=20)for(let xx=9;xx<510;xx+=30)r(g,xx+(Math.floor(yy/20)%2)*15,yy,16,18,'#cfdbd4');
+  // Window with glowing sky, animated clouds, curtains and light rays.
+  r(g,35,37,104,76,'#8b849b');r(g,41,43,92,63,'#a2d5d7');
+  r(g,45,55,84,44,'#b2dcdd');
+  for(let k=0;k<3;k++){let cloud=(t*4+k*41)%134;r(g,46+cloud%81,61+k*9,18,3,'#eaf4e9')}
+  r(g,83,43,4,63,'#f3efe7');r(g,41,73,92,3,'#f3efe7');
+  r(g,32,34,11,84,accent);r(g,131,34,11,84,accent);
+  r(g,49,107,76,6,'#fff4df');
+  // Medical wall poster, clock and lamp.
+  r(g,198,37,85,54,'#b7aac0');r(g,203,42,75,44,'#fff9ed');
+  txt(g,'PLANTÃO',241,57,'#796883',10,'center');
+  r(g,239,65,6,16,'#e59bad');r(g,234,70,16,6,'#e59bad');
+  r(g,452,37,29,29,'#776b87');r(g,456,41,21,21,'#fff9eb');
+  r(g,466,45,2,10,'#76677d');r(g,467,52,6,2,'#76677d');
+  r(g,317,27,90,9,'#a9a4bb');r(g,341,35,38,4,'#fce3aa');
+  // Patient in assessment & triage; other rooms feature their own educational equipment.
+  if(i<=1){
+    g.save();g.translate(29,151);g.scale(2.0,1.9);bed(g,0,0);g.restore();
+    r(g,43,161,21,13,'#d8ad92');r(g,47,158,18,6,'#654a58');
+    r(g,61,164,54,17,'#a7d6c7');r(g,104,169,20,6,'#e6b5c1');
+    monitor(g,138,143,t);
+    txt(g,'M.C.N.',98,203,'#796678',9,'center');
+  }else if(i===2||i===4){
+    r(g,46,144,104,12,'#ad9caa');r(g,52,151,95,32,'#e6d8db');
+    for(let k=0;k<5;k++){r(g,60+k*17,132,8,22,'#d4e5e6');r(g,61+k*17,141+(k%2)*3,6,12,['#c98fa9','#99c4bd','#cdb2d9','#b4d6a5','#dcae8d'][k]);r(g,59+k*17,129,10,4,'#796f88')}
+    monitor(g,158,150,t);
+  }else if(i===3){
+    r(g,41,146,117,11,'#ad9caa');r(g,42,155,110,34,'#f0e5de');
+    for(let k=0;k<5;k++){r(g,53+k*19,142,10,14,'#b9cdda');r(g,53+k*19,140,10,3,'#dce2e7')}
+    txt(g,'COAGULAÇÃO',102,203,'#796678',8,'center');
+  }else if(i===5){
+    computer(g,55,163,t);r(g,39,187,132,6,'#af98ab');
+    for(let k=0;k<4;k++)r(g,107+k*13,142,8,15,['#a9c6d4','#b6a0d1','#a9d8c0','#e1abbb'][k]);
+  }else{
+    plant(g,89,188,t);r(g,28,170,121,11,'#b5a1aa');r(g,42,167,80,3,'#fff7ed');
+    txt(g,'SÍNTESE CLÍNICA',95,202,'#796678',8,'center');
+  }
+  // Tiny 16-bit room accents: glowing side lamps, tissue box, pattern and shadows.
+  r(g,10,120,492,3,'#fff4e8');r(g,10,125,492,3,'#cab9c5');
+  for(let yy=149;yy<228;yy+=19)for(let xx=14;xx<500;xx+=29){
+    r(g,xx+(yy%2)*7,yy+16,12,1,'#a5bdb7');r(g,xx+9,yy+2,2,2,'#e3e9d9');
+  }
+  pixelBox(g,455,159,25,20,'#e9d5d0','#665772','#fff9e6');
+  r(g,463,151,9,8,'#faf8e7');r(g,465,148,4,5,'#e2e2e5');
+  r(g,448,182,42,4,'#9c8195');r(g,449,179,42,3,'#f6decc');
+  r(g,280,170,9,16,'#d9ac9d');r(g,282,166,5,5,'#80ba9d');
+  // Shadows and enlarged, animated pixel-art protagonist / professional.
+  r(g,168,202,98,7,'#8b8e9d55');r(g,324,199,80,7,'#8b8e9d55');
+  avatar(g,218,158,pc.shirt,'right',t*2.3,2.05,false,pc.hair,pc);
+  avatar(g,358,154,n.c,'left',t*1.7+.7,2.2,false,n.hair);
+  // Speech bubble remains visible as the quiz opens; character and room stay on screen.
+  r(g,295,80,172,49,'#4d425b');r(g,300,83,164,39,'#fff8e9');
+  r(g,322,122,16,9,'#4d425b');r(g,324,119,12,8,'#fff8e9');
+  txt(g,n.name+' · FASE '+(phase+1),310,97,'#926083',10);
+  txt(g,phase?'Vamos estudar as enzimas!':'Vamos analisar o caso!',310,111,'#4d485e',9);
+  if(Math.floor(t*2)%2===0){r(g,450,112,6,3,'#d68daa');}
+  // Bottom nameplates and location strip.
+  r(g,177,197,80,15,'#fff4e0');txt(g,pc.name.toUpperCase(),217,208,'#685b7c',9,'center');
+  r(g,321,197,80,15,accent);txt(g,n.name,361,208,'#544960',9,'center');
+  for(let k=0;k<3;k++)r(g,7+k*5,220,3,3,accent);
+}
+function drawStory(t){
+  const g=sctx,idx=storyIndex,day=idx===3;
+  const pal=day?{sky:'#8ec3cf',far:'#c4d5bf',near:'#93b1a3',roof:'#7d7f9a'}:{sky:'#454b72',far:'#727a94',near:'#666c83',roof:'#4a4768'};
+  r(g,0,0,512,240,pal.sky);
+  // Sky in several colors with a pixelated skyline and drifting clouds.
+  r(g,0,65,512,78,day?'#a9cbd1':'#65698b');
+  for(let k=0;k<5;k++){
+    let cx=((k*120+Math.round(t*3))%620)-70,cy=25+k%3*16;
+    r(g,cx,cy,35,5,day?'#f9f4dd':'#a5a8bb');
+    r(g,cx+6,cy-5,23,5,day?'#fff9e9':'#a5a8bb');
+    r(g,cx+12,cy-8,13,3,day?'#fff9e9':'#a5a8bb');
+  }
+  for(let x=-8;x<520;x+=43){let bh=25+(x*17%33+33)%33;r(g,x,139-bh,39,bh+30,pal.far);for(let j=0;j<3;j++)r(g,x+6+j*12,145-bh,5,6,day?'#e1e5c5':'#d9c1a4')}
+  r(g,0,167,512,19,pal.near);
+  for(let x=8;x<512;x+=42){r(g,x,164,3,14,'#58667a');r(g,x+3,164,18,2,'#e4dfdc')}
+  // Hospital drawn with several material and shading tones.
+  r(g,101,37,310,146,'#48465f');r(g,105,33,302,149,'#d3b4c4');
+  r(g,112,26,288,18,'#f6e5d8');r(g,116,22,282,4,'#917b9e');
+  r(g,121,43,271,11,'#edcbd0');r(g,120,55,274,123,'#f0dcd9');
+  r(g,208,38,94,21,'#805e8a');r(g,210,40,90,17,'#bc7ea0');
+  txt(g,'SANTA AURORA',255,51,'#fff8ee',10,'center');
+  for(let k=0;k<4;k++){
+    let x=136+k*67;
+    r(g,x-3,75,48,49,'#746c87');r(g,x,78,42,43,'#80a8b1');
+    r(g,x+3,80,36,36,(Math.sin(t*.8+k)>-.6)?'#c1dce0':'#a3c3c9');
+    r(g,x+20,80,3,39,'#e9e6df');r(g,x+3,98,36,3,'#e9e6df');
+    r(g,x+5,82,3,13,'#e4eee9');r(g,x+25,104,12,2,'#e4eee9');
+    r(g,x-3,124,48,4,'#a696a1');
+  }
+  // Entrance with double doors, lights, raised sign and crosses.
+  r(g,210,126,93,60,'#615c73');r(g,216,132,81,51,'#96b3bb');
+  r(g,219,135,37,45,'#b9dad8');r(g,259,135,35,45,'#b9dad8');
+  r(g,256,132,3,51,'#f1eadf');r(g,239,156,4,8,'#f4e6cf');r(g,273,156,4,8,'#f4e6cf');
+  r(g,207,183,98,6,'#efddcf');r(g,211,189,90,5,'#ad9da7');
+  r(g,232,58,50,12,'#bd8f9d');r(g,252,60,6,8,'#fff9ee');r(g,249,62,12,4,'#fff9ee');
+  for(let lx of [128,366]){r(g,lx,49,15,6,'#ead8c4');r(g,lx+5,54,6,3,'#ffffe3')}
+  // Potted plants, foliage shadows and sidewalk.
+  for(let x of [88,423]){
+    r(g,x,178,26,12,'#a76c85');r(g,x+2,178,22,4,'#e6aab5');
+    r(g,x+11,151,3,30,'#517a6c');
+    r(g,x,151,15,13,'#548c79');r(g,x+9,145,16,17,'#70a58c');r(g,x+2,142,16,12,'#96c4a5');
+    r(g,x+4,145,8,3,'#c8d6a4');
+  }
+  r(g,0,194,512,46,'#47475f');r(g,0,192,512,3,'#a3a6a8');
+  for(let i=0;i<6;i++){let x=(i*115+42)%610-30;r(g,x,219,51,3,'#d4c6b6')}
+  if(idx<=1){
+    let xx=idx===0?Math.min(168,Math.floor(t*22)%275-58):154;
+    r(g,xx+11,206,83,4,'#282e42');ambulance(g,xx,142,Math.floor(t*4)%2===0);
+    // animated light spill from emergency vehicle
+    if(Math.floor(t*4)%2===0){r(g,xx+40,139,30,3,'#ed8ca6aa')}
+  }else if(idx===2){
+    ambulance(g,47,144,Math.floor(t*5)%2===0);
+    r(g,342,198,100,5,'#58506599');
+    avatar(g,354,164,'#c58aaf','down',t*2.4,1.6,true);
+    avatar(g,405,163,'#75b6af','down',t*2.8,1.65);
+    heart(g,448,101,1);
+  }else{
+    for(let i=0;i<3;i++){i===0?avatar(g,171+i*83,161,chosen().shirt,'down',t*2.2+i,1.6,false,chosen().hair,chosen()):avatar(g,171+i*83,161,['#8eacd4','#d19ab8','#7bb8ab'][i],'down',t*2.2+i,1.6)}
+    heart(g,334,93,1);
+  }
+  // Pixel glints of evening light.
+  if(Math.floor(t*2)%2===0){r(g,120,25,4,2,'#fff2cf');r(g,393,43,3,2,'#fff2cf')}
+}
+function renderStory(){let a=story[storyIndex];$('storyTitle').textContent=a.title;$('storyText').textContent=storyIndex===0?`${chosen().name} é estudante de medicina em um plantão supervisionado. A equipe recebe uma ligação: uma gestante está a caminho da maternidade, em uma ambulância, com sinais de alerta obstétrico.`:a.text;$('chapter').textContent=`PRÓLOGO · ${String(storyIndex+1).padStart(2,'0')}/04`;$('cinemaCaption').textContent=a.cap;$('storyNext').textContent=storyIndex===3?'INICIAR PLANTÃO →':'CONTINUAR →';$('dots').innerHTML='';for(let i=0;i<4;i++){const d=document.createElement('div');d.className='dot'+(i===storyIndex?' on':'');$('dots').appendChild(d)}}function stage(name){document.querySelectorAll('.stage').forEach(n=>n.classList.toggle('active',n.id===name));if(name==='game'||name==='intro'||name==='end')requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'instant'}))}
+$('storyNext').onclick=()=>{if(!audioStarted)return;initAudio();fx('tap');if(storyIndex<3){storyIndex++;renderStory();if(storyIndex===1||storyIndex===2){tone(587.33,.19,'triangle',.016);tone(783.99,.20,'triangle',.013,.16)}}else{stage('game');updateMission();guideFlash=3;fx('quest')}};
+// World rendering. The building uses open doorways; walls have collision boxes so rooms feel separate.
+const walls=[];
+function wall(x,y,w,h){walls.push({x,y,w,h})}
+function setupWalls(){walls.length=0;wall(9,9,494,8);wall(9,305,494,8);wall(9,9,8,304);wall(495,9,8,304);
+  // horizontal dividers, with doorways aligned to each room
+  for(let y of [126,192])for(let a of [[17,78],[111,131],[242,131],[275,127],[407,128],[441,54]]){if(y===126){if(a[0]===17||a[0]===111||a[0]===242||a[0]===275||a[0]===407||a[0]===441){} } }
+  for(let y of [127,193]){for(let seg of [[17,70],[114,125],[287,124],[448,47]])wall(seg[0],y,seg[1],5)}
+  // vertical partitions, upper and lower rooms
+  for(let x of [174,338]){wall(x,17,5,110);wall(x,198,5,107)}
+}
+setupWalls();
+function floorPattern(g,x,y,w,h,c1,c2){r(g,x,y,w,h,c1);for(let yy=y+2;yy<y+h;yy+=18)for(let xx=x+2;xx<x+w;xx+=18){if((xx+yy)%36<18)r(g,xx,yy,16,16,c2);r(g,xx+15,yy+15,1,1,'#ffffff55')}}
+function plant(g,x,y,t){r(g,x-7,y-1,14,8,'#bd91a5');r(g,x-6,y,12,7,'#d49ca5');r(g,x-2,y-10,4,11,'#507f69');r(g,x-10+Math.sin(t)*1.6,y-17,10,9,'#76b192');r(g,x+1+Math.sin(t+.8)*1.5,y-19,9,10,'#73ad8c');r(g,x-5,y-22,10,10,'#8cc7a0')}
+function monitor(g,x,y,t){r(g,x-3,y-2,35,24,'#3b445d');r(g,x,y,29,17,'#a1d2c9');const pulse=t*2%30;for(let xx=1;xx<27;xx+=2){let yy=8+(Math.abs(xx-pulse)<2?-5:Math.abs(xx-pulse-2)<2?4:0);r(g,x+xx,y+yy,2,1,'#5b987e')}r(g,x+12,y+18,5,5,'#76768a')}
+function bed(g,x,y){r(g,x,y,49,28,'#76748e');r(g,x+4,y+3,43,22,'#e4b7c5');r(g,x+6,y+5,15,18,'#fff5e9');r(g,x+22,y+5,23,18,'#a6dfcd');r(g,x+6,y-3,41,4,'#aaa4b0')}
+function computer(g,x,y,t){r(g,x,y,38,11,'#b88d9c');r(g,x+2,y+3,34,8,'#f3dbcd');r(g,x+10,y-15,22,16,'#4a4c70');r(g,x+12,y-13,18,12,'#79aab3');r(g,x+14,y-9,13,2,'#a6e1cb');if(Math.floor(t*3)%2===0)r(g,x+14,y-5,9,2,'#d9a6bc')}
+
+function pixelBox(g,x,y,w,h,fill,shadow='#5d586e',shine='#fff4e5'){
+  r(g,x+2,y+3,w,h,shadow);r(g,x,y,w,h,'#3f3b55');r(g,x+2,y+2,w-4,h-4,fill);r(g,x+3,y+3,w-7,2,shine);
+}
+function tinyShelf(g,x,y,t){
+  r(g,x,y,38,5,'#6d607c');r(g,x+2,y+1,35,3,'#ceac9d');
+  for(let i=0;i<5;i++){const c=['#90cab5','#dca5bd','#e7d39c','#a8b8df','#b0d5d3'][i];r(g,x+4+i*7,y-12,5,12,'#655b78');r(g,x+5+i*7,y-11,3,9,c);r(g,x+5+i*7,y-7,3,2,'#f8ecdd')}
+  r(g,x,y+4,38,2,'#9b7e94');
+}
+function tileDither(g,x,y,w,h,a,b,step=7){
+  for(let yy=y+1;yy<y+h-2;yy+=step)for(let xx=x+1;xx<x+w-2;xx+=step){
+    let d=((xx*7+yy*11)>>>1)%7;
+    if(d===1||d===3)r(g,xx,yy,2,1,a);
+    if(d===5)r(g,xx+2,yy+3,1,2,b);
+  }
+}
+function decoWorld(g,t){
+  // All additions are aligned to the map's underlying pixel grid.
+  // Room tiles and wall trims; palette is inspired by 16-bit JRPG interiors.
+  for(let x of [27,192,355]){
+    r(g,x,21,137,2,'#fff1e2');r(g,x,24,137,2,'#bca2ba');
+    r(g,x,303,138,2,'#64728a');
+  }
+  tileDither(g,20,22,145,95,'#cbbdc6','#f6ebe3');
+  tileDither(g,182,22,149,95,'#cbbdc6','#eee2ee');
+  tileDither(g,344,22,147,95,'#b8c4c8','#f0f7ed');
+  tileDither(g,20,201,145,99,'#b9c9c3','#eef4e4');
+  tileDither(g,182,201,149,99,'#b5cfc3','#eff6e5');
+  tileDither(g,345,201,147,99,'#d6bebf','#faf0ec');
+  // Colorful bedside carts, medicine shelves and wall signs.
+  tinyShelf(g,121,88,t);tinyShelf(g,287,86,t);tinyShelf(g,446,88,t);
+  tinyShelf(g,121,270,t);tinyShelf(g,446,271,t);
+  for(let [xx,yy] of [[41,112],[205,110],[369,111]]){
+    r(g,xx,yy,24,8,'#7d7892');r(g,xx+2,yy+1,20,5,'#f7e0d7');
+    r(g,xx+10,yy-8,4,8,'#b789ab');r(g,xx+11,yy-7,2,6,'#f7e8da');
+  }
+  // Tiled corridor edge, reflected warm lighting and helpful orientation arrows.
+  for(let x=29;x<490;x+=37){r(g,x,136,18,1,'#effff4');r(g,x+2,186,19,2,'#90b9b9')}
+  for(let i=0;i<4;i++){
+    let x=61+i*128;
+    r(g,x,145,3,3,'#e3f2e4');r(g,x+7,145,3,3,'#e3f2e4');
+    r(g,x+3,148,4,3,'#d0e6de');
+  }
+  // Scattered sparkles on glass and monitor reflections.
+  if(Math.floor(t*2)%2===0){
+    for(let x of [41,201,361]){r(g,x+35,36,3,2,'#ffffffa9');r(g,x+31,41,2,2,'#e9fff1')}
+  }
+  // Nurse station flower vase and a softly glowing circular hospital clock.
+  r(g,326,180,9,10,'#b985a9');r(g,327,175,7,6,'#76a792');
+  r(g,331,171,2,6,'#487d67');r(g,327,171,3,4,'#9dc5a5');
+  pixelBox(g,451,146,17,17,'#fdf2e3','#515065','#fff');
+  r(g,459,150,2,7,'#786481');r(g,459,156,5,1,'#786481');
+}
+function drawWorld(t){const g=ctx;r(g,0,0,512,320,'#5b5e79');floorPattern(g,17,17,478,110,'#e7e0d7','#e4e0d9');floorPattern(g,17,198,478,107,'#dce7dc','#d7e3d7');floorPattern(g,17,132,478,61,'#c1d5cd','#bbd0c9');
+  // soft corridor rug
+  r(g,24,151,464,20,'#b6c6c9');for(let x=28;x<480;x+=24)r(g,x,155,16,12,'#c5d7d4');
+  // room top accent strips
+  for(let i=0;i<3;i++){let x=17+164*i;r(g,x,17,157,8,['#f5b0bd','#b6accf','#a6d6d1'][i])}
+  // lower accent strips
+  for(let i=0;i<3;i++){let x=17+164*i;r(g,x,198,157,7,['#c9b8e4','#a1d9c7','#e1b5b0'][i])}
+  // walls are drawn after floor
+  for(let a of walls){r(g,a.x+1,a.y+2,a.w,a.h,'#82788f');r(g,a.x,a.y,a.w,a.h,'#67657e');if(a.h<10)r(g,a.x,a.y,a.w,2,'#f6e2d9');if(a.w<10)r(g,a.x,a.y,2,a.h,'#f6e2d9')}
+  // door thresholds
+  for(let x of [89,254,419]){r(g,x-16,125,32,9,'#e2b7aa');r(g,x-16,190,32,9,'#e2b7aa');r(g,x-11,128,22,4,'#f4dfcf');r(g,x-11,194,22,4,'#f4dfcf')}
+  // furnishings, window, trim
+  for(let x of [33,196,358]){r(g,x,31,52,24,'#7a90a6');r(g,x+4,34,44,18,Math.floor(t*.8)%2===0?'#b1dce1':'#aed6d2');r(g,x+25,34,3,18,'#e8eceb');r(g,x+4,42,44,2,'#e8eceb')}
+  computer(g,40,92,t);bed(g,207,88);monitor(g,392,87,t);r(g,393,110,51,11,'#bcabb2');r(g,395,111,47,8,'#e9d2cb');
+  r(g,34,278,47,14,'#c4a5aa');r(g,38,281,39,9,'#fff1e0');r(g,218,279,45,11,'#a9c9c4');r(g,221,281,39,7,'#f1dfd6');computer(g,380,289,t);
+  // reception center small desk; dynamic screen and papers
+  r(g,221,174,67,8,'#af929e');r(g,223,171,63,5,'#f0d4c5');r(g,227,173,11,3,'#fff9e8');
+  plant(g,32,116,t);plant(g,485,119,t+.8);plant(g,32,289,t+2);plant(g,487,293,t+.2);
+  // animated laboratory equipment and test tubes in the biochemistry room
+  monitor(g,286,216,t);r(g,288,273,40,9,'#9bb7b4');for(let k=0;k<4;k++){r(g,293+k*9,261,5,13,'#ece4e4');r(g,293+k*9,265+(k%2)*2,5,9-(k%2)*2,['#c17c9b','#81b4be','#9dcfab','#c6a5d3'][k]);r(g,293+k*9,259,5,3,'#6b647c')}
+  // room headings
+  for(let [name,x,y] of [['TRIAGEM',50,68],['AVALIAÇÃO',213,68],['LAB',405,68],['HEMATOLOGIA',40,230],['BIOQUÍMICA',212,230],['PESQUISA',400,230]]){r(g,x-10,y-13,name.length*5+18,12,'#fff6eab8');txt(g,name,x,y-4,'#665976',7)}
+  decoWorld(g,t);
+  // NPCs; highlight objective
+  NPCS.forEach((n,i)=>{const wob=t*2+i*.5; if(i===targetIndex()){const ring=8+Math.sin(t*4)*2;r(g,n.x-12,n.y+14,24,3,'#ffc77b');r(g,n.x-11,n.y-17,23,3,'#e38da6');r(g,n.x-12,n.y-17,3,7,'#e38da6');r(g,n.x+9,n.y-17,3,7,'#e38da6');r(g,n.x-6,n.y-36-Math.sin(t*4)*3,12,11,'#ffe4a5');txt(g,'!',n.x,n.y-27-Math.sin(t*4)*3,'#74516a',11,'center')}else if(quiz.slice(0,step).some(q=>q.npc===i)){r(g,n.x+8,n.y-25,12,12,'#9bd7be');txt(g,'✓',n.x+14,n.y-15,'#285c52',11,'center')}else{r(g,n.x+8,n.y-25,10,10,'#d9d8dc');txt(g,'·',n.x+13,n.y-17,'#888195',9,'center')}avatar(g,n.x,n.y,n.c,'down',wob,.92,false,n.hair);txt(g,n.name,n.x,n.y+30,'#635974',7,'center')});
+  // route guidance line (small pulsing pixels) points towards the next target
+  if(targetIndex()>=0){let d=NPCS[targetIndex()],vx=d.x-player.x,vy=d.y-player.y,dist=Math.hypot(vx,vy);if(dist>28){const end=Math.min(dist-24,78);for(let v=14;v<end;v+=12){let f=v/dist,pulse=(t*15)%12;r(g,player.x+vx*f-2,player.y+vy*f-2,4,4,(v+pulse)%24<12?'#ecb0ab':'#f6e0a8')}}}
+  avatar(g,player.x,player.y,chosen().shirt,player.face,player.walking,1.08,false,chosen().hair,chosen());
+  if(guideFlash>0&&targetIndex()>=0){let n=NPCS[targetIndex()];r(g,n.x-22,n.y-58,44,9,'#fff3cc');txt(g,'SIGA AQUI',n.x,n.y-51,'#7c4969',7,'center')}
+  for(let p of confetti){r(g,p.x,p.y,2,3,p.c)}
+}
+function mini(){let g=mctx;g.clearRect(0,0,208,130);r(g,0,0,208,130,'#78958f');r(g,4,4,200,122,'#d8e2d9');r(g,4,52,200,26,'#bfd1d0');r(g,70,4,3,49,'#80748f');r(g,137,4,3,49,'#80748f');r(g,70,80,3,46,'#80748f');r(g,137,80,3,46,'#80748f');for(let y of [51,77])r(g,4,y,200,2,'#80748f');for(let i=0;i<7;i++){let n=NPCS[i],x=n.x*208/512,y=n.y*130/320;r(g,x-2,y-2,4,4,quiz.slice(0,step).some(q=>q.npc===i)?'#70b596':i===targetIndex()?'#dc789e':'#8b8a98')}if(targetIndex()>=0){let n=NPCS[targetIndex()],x=n.x*208/512,y=n.y*130/320;r(g,x-5,y-5,10,2,'#e7688e');r(g,x-5,y+3,10,2,'#e7688e');r(g,x-5,y-3,2,6,'#e7688e');r(g,x+3,y-3,2,6,'#e7688e')}r(g,player.x*208/512-2,player.y*130/320-2,5,5,'#36314e')}
+function collide(x,y){let box={x:x-5,y:y-8,w:10,h:17};return walls.some(w=>box.x<w.x+w.w&&box.x+box.w>w.x&&box.y<w.y+w.h&&box.y+box.h>w.y)}
+function closest(){let best=-1,bd=1e9;NPCS.forEach((n,i)=>{let d=Math.hypot(player.x-n.x,player.y-n.y);if(d<31&&d<bd){bd=d;best=i}});return best}
+function movement(dt){if(!$('game').classList.contains('active')||$('modal').classList.contains('open'))return;let dx=((held.has('right')||touchHeld.has('right'))?1:0)-((held.has('left')||touchHeld.has('left'))?1:0),dy=((held.has('down')||touchHeld.has('down'))?1:0)-((held.has('up')||touchHeld.has('up'))?1:0);if(!dx&&!dy)return;let length=Math.hypot(dx,dy);dx=dx/length*92*dt;dy=dy/length*92*dt;if(dx){if(!collide(player.x+dx,player.y))player.x+=dx;player.face=dx>0?'right':'left'}if(dy){if(!collide(player.x,player.y+dy))player.y+=dy;player.face=dy>0?'down':'up'}player.walking+=dt*11;if(sfxOn&&gameTime>nextStepSound){fx('step');nextStepSound=gameTime+.29}updateDistance()}
+const dirKeys={ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down',ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right'};
+document.addEventListener('keydown',e=>{if(dirKeys[e.code]){held.add(dirKeys[e.code]);e.preventDefault()}if((e.code==='KeyE'||e.code==='Space')&&$('game').classList.contains('active')&&!$('modal').classList.contains('open')){e.preventDefault();interact()}});document.addEventListener('keyup',e=>{if(dirKeys[e.code])held.delete(dirKeys[e.code])});window.addEventListener('blur',()=>held.clear());// Touchscreen d-pad: hold to move; sliding between arrows changes direction.
+const touchHeld=new Set();const pad=$('touchDpad');let activePadPointer=null;
+function updateTouchPad(e){
+  const b=[...pad.querySelectorAll('[data-dir]')];let winner=null,dist=Infinity;
+  for(const btn of b){const rect=btn.getBoundingClientRect(),cx=rect.left+rect.width/2,cy=rect.top+rect.height/2,d=Math.hypot(e.clientX-cx,e.clientY-cy);if(d<dist){dist=d;winner=btn}}
+  touchHeld.clear();for(const btn of b)btn.classList.remove('is-held');
+  if(winner){const dir=winner.dataset.dir;touchHeld.add(dir);winner.classList.add('is-held')}
+}
+function releaseTouchPad(e){if(activePadPointer===null || (e&&e.pointerId!==activePadPointer))return;activePadPointer=null;touchHeld.clear();pad.querySelectorAll('[data-dir]').forEach(b=>b.classList.remove('is-held'))}
+pad.addEventListener('pointerdown',e=>{if(activePadPointer!==null)return;e.preventDefault();activePadPointer=e.pointerId;pad.setPointerCapture(e.pointerId);updateTouchPad(e)});
+pad.addEventListener('pointermove',e=>{if(e.pointerId===activePadPointer){e.preventDefault();updateTouchPad(e)}});
+for(const eventName of ['pointerup','pointercancel','lostpointercapture'])pad.addEventListener(eventName,releaseTouchPad);
+window.addEventListener('blur',()=>releaseTouchPad());document.addEventListener('visibilitychange',()=>{if(document.hidden)releaseTouchPad()});
+function updateDistance(){
+ if(targetIndex()<0)return;
+ const n=NPCS[targetIndex()];let dx=n.x-player.x,dy=n.y-player.y,d=Math.hypot(dx,dy);
+ let arrow=Math.abs(dx)>Math.abs(dy)?(dx>0?'→':'←'):(dy>0?'↓':'↑');
+ $('distance').textContent=d<31?'✓ VOCÊ CHEGOU! CONVERSE':`${arrow} ${Math.round(d/5)} PASSOS APROX.`;
+ $('mobileMissionArrow').textContent=d<31?'✓':arrow;
+ $('mobileMissionDesc').textContent=d<31?`Você chegou! Converse com ${n.name}.`:`${arrow} Siga para ${quiz[step].room}. Segure as setas para andar.`;
+ const near=closest();$('near').classList.toggle('show',near>=0);
+ if(near>=0)$('near').textContent=near===targetIndex()?`💬 FALAR COM ${NPCS[near].name}`:`💬 ${NPCS[near].name} (OUTRA SALA)`;
+ $('interact').classList.toggle('ready',near>=0);
+ $('interact').querySelector('.interact-label').textContent=near>=0?`FALAR COM ${NPCS[near].name}`:'CONVERSAR';
+ let loc='CORREDOR CENTRAL';if(player.y<127)loc=player.x<175?'TRIAGEM':player.x<340?'AVALIAÇÃO':'LABORATÓRIO';if(player.y>193)loc=player.x<175?'HEMATOLOGIA':player.x<340?'BIOQUÍMICA':'PESQUISA';$('loc').textContent='📍 '+loc;
+}
+function updateMission(){
+ const entry=quiz[step],num=quiz.length;
+ $('phasePill').textContent=phase===0?'FASE 1 · DPP E CIVD':'FASE 2 · ENZIMAS NA GESTAÇÃO';
+ $('missionLabel').textContent=`FASE ${phase+1} · ESTAÇÃO ${step+1} DE ${num} · QUESTÃO ${questionIndex+1}/${entry?.questions.length??1}`;
+ $('missionTitle').textContent=entry?.room??'FINALIZADO';
+ $('missionText').textContent=entry?.instruction??'Todos os desafios concluídos.';
+ $('progress').textContent=doneQuestions+'/13';
+ $('mobileMissionCount').textContent=(step+1)+'/'+num;
+ $('mobileMissionRoom').textContent=entry?.room??'CONCLUÍDO';
+ $('score').textContent=String(score).padStart(3,'0');
+ const ol=$('steps');ol.innerHTML='';for(let i=0;i<quiz.length;i++){
+   let item=document.createElement('li');item.className=i<step?'done':i===step?'active':'';
+   let b=document.createElement('b');b.textContent=i<step?'✓':i+1;item.append(b);
+   let sp=document.createElement('span');sp.textContent=quiz[i].room+` · ${quiz[i].questions.length} ${quiz[i].questions.length===1?'questão':'questões'}`;item.append(sp);ol.append(item);
+ }
+ updateDistance();
+}
+$('guideBtn').onclick=()=>{guideFlash=4;fx('quest');$('hint').textContent=quiz[step]?.instruction??'Plantão concluído!'};
+$('interact').onclick=interact;
+function interact(){
+ let nearest=closest();if(nearest<0){$('hint').textContent='Chegue mais perto de um profissional para conversar. Siga a seta rosa!';fx('wrong');guideFlash=3;return}
+ fx('talk');
+ if(nearest!==targetIndex()){
+   showDialog(`Olá! Sou ${NPCS[nearest].name}.`,`Vamos aprender uma etapa de cada vez. Sua missão atual é: ${quiz[step].room}. ${quiz[step].instruction}`,nearest);return;
+ }
+ openQuiz(nearest);
+}
+function enterConversation(i){
+ roomNpc=i;$('game').classList.add('in-conversation');
+ $('roomCaption').textContent=`FASE ${phase+1} · ${quiz[step].room} · ${quiz[step].who.toUpperCase()} · DESAFIO EM CENA`;
+ $('modal').classList.add('open');held.clear();releaseTouchPad();
+ requestAnimationFrame(()=>document.querySelector('.canvas-wrap').scrollIntoView({block:'start',behavior:'smooth'}));
+}
+function leaveConversation(){
+ $('modal').classList.remove('open');$('game').classList.remove('in-conversation');
+ modalIndex=-1;held.clear();releaseTouchPad();updateDistance();
+}
+function showDialog(title,message,i=targetIndex()){
+ $('modalKicker').textContent='CONVERSA';$('modalTitle').textContent=title;
+ $('modalDetail').textContent=message;$('modalQuestion').textContent='';$('questionIndicator').textContent='';
+ $('options').innerHTML='';$('labbox').innerHTML='';$('feedback').classList.remove('open');
+ $('complete').style.display='none';$('closeModal').textContent='ENTENDI ✓';enterConversation(i);modalIndex=-1;
+}
+function openQuiz(i){
+ modalIndex=i;answered=false;selected=-1;
+ const entry=quiz[step],item=currentQuestion();
+ $('modalKicker').textContent=`FASE ${phase+1} · ESTAÇÃO ${step+1}/${quiz.length} · ${entry.room}`;
+ $('modalTitle').textContent=entry.subtitle;
+ $('modalDetail').textContent=entry.detail;
+ $('questionIndicator').textContent=`QUESTÃO ${questionIndex+1} DE ${entry.questions.length} COM ${entry.who.toUpperCase()}`;
+ $('modalQuestion').textContent=item.q;$('labbox').innerHTML='';
+ if(phase===0&&step>=2){
+  let det=document.createElement('details'),sum=document.createElement('summary');sum.textContent='📋 Consultar exames laboratoriais de M.C.N.';det.append(sum);
+  let tab=document.createElement('table');tab.className='lab';let thead=document.createElement('tr');
+  for(let v of ['EXAME','RESULTADO','REFERÊNCIA DO CASO']){let th=document.createElement('th');th.textContent=v;thead.append(th)}tab.append(thead);
+  for(let row of labs){let tr=document.createElement('tr');for(let v of row){let td=document.createElement('td');td.textContent=v;tr.append(td)}tab.append(tr)}
+  det.append(tab);let p=document.createElement('p');p.className='small';p.textContent='* Faixas informadas no caso; referências variam conforme laboratório, método e idade gestacional.';det.append(p);$('labbox').append(det);
+ }
+ $('feedback').classList.remove('open');$('feedback').innerHTML='';$('options').innerHTML='';
+ item.a.forEach((v,j)=>{let b=document.createElement('button');b.className='opt';b.textContent=`${String.fromCharCode(65+j)}. ${v}`;b.onclick=()=>answer(j);$('options').append(b)});
+ $('closeModal').textContent='VOLTAR AO MAPA';$('complete').style.display='none';enterConversation(i);
+}
+function answer(i){
+ if(answered)return;answered=true;selected=i;let q=currentQuestion(),correct=i===q.ok,key=creditKey();
+ for(let [j,b] of [...$('options').children].entries()){b.disabled=true;if(j===q.ok)b.classList.add('correct');else if(j===i)b.classList.add('wrong')}
+ let f=$('feedback');f.replaceChildren();let strong=document.createElement('strong');
+ strong.textContent=correct?(credited.has(key)?'✓ RESPOSTA CORRETA':'✓ RESPOSTA CORRETA · +100 PONTOS'):'✦ VAMOS REVISAR O RACIOCÍNIO';
+ let para=document.createElement('div');para.textContent=q.why;f.append(strong,para);f.classList.add('open');
+ if(correct){if(!credited.has(key)){score+=100;credited.add(key)}fx('correct')}else fx('wrong');
+ $('score').textContent=String(score).padStart(3,'0');$('closeModal').textContent='REVER MAPA';
+ $('complete').style.display='inline-block';
+ $('complete').textContent=questionIndex+1<quiz[step].questions.length?'PRÓXIMA PERGUNTA →':phase===0&&step===quiz.length-1?'IR PARA FASE 2 →':phase===1&&step===quiz.length-1?'FINALIZAR JOGO →':'PRÓXIMA ESTAÇÃO →';
+}
+function finishMission(){
+ if(!answered||modalIndex!==targetIndex())return;
+ doneQuestions++;$('progress').textContent=doneQuestions+'/13';
+ if(questionIndex+1<quiz[step].questions.length){questionIndex++;fx('quest');openQuiz(modalIndex);updateMission();return}
+ leaveConversation();step++;questionIndex=0;fx('quest');guideFlash=3;
+ confetti=[];for(let i=0;i<36;i++)confetti.push({x:player.x+(Math.random()-.5)*45,y:player.y-12+Math.random()*12,vx:(Math.random()-.5)*60,vy:-30-Math.random()*35,life:.65+Math.random()*.55,c:['#ffe5a4','#e9a1bb','#9be1cf','#c5b0e4'][i%4]});
+ if(step>=quiz.length){
+  if(phase===0){$('chapterWelcome').textContent=`Muito bem, ${chosen().name}! Você concluiu o estudo de DPP/CIVD. Agora volte à maternidade para estudar uma gestação fisiológica hipotética — diferente do quadro de M.C.N. — e explorar suas adaptações enzimáticas.`;stage('interlude')}
+  else{ $('finalScore').textContent=`${score} / 1300 PTS`;$('resultText').textContent=score>=1100?'Excelente! Você integrou o caso patológico às adaptações fisiológicas.':score>=700?'Bom progresso! Releia os comentários das questões em que teve dúvida.':'Você concluiu as duas fases! Refaça os desafios para revisar o conteúdo.';stage('end') }
+ }else{updateMission();$('hint').textContent=`✓ Estação concluída! Agora: ${quiz[step].instruction}`;window.scrollTo({top:0,behavior:'smooth'})}
+ modalIndex=-1;
+}
+function launchPhase2(){
+ phase=1;quiz=enzymeQuests;step=0;questionIndex=0;player={x:332,y:165,face:'down',walking:0};
+ $('hint').textContent=`FASE 2: ${chosen().name}, vá à AVALIAÇÃO e converse com a obstetra Bia. Ela tem duas perguntas para você.`;
+ updateMission();guideFlash=4;stage('game');fx('quest');
+}
+$('startPhase2').onclick=launchPhase2;
+$('complete').onclick=finishMission;$('closeModal').onclick=leaveConversation;
+function reset(){
+ phase=0;quiz=caseQuiz;step=0;questionIndex=0;doneQuestions=0;storyIndex=0;score=0;credited.clear();
+ player={x:332,y:165,face:'down',walking:0};guideFlash=0;held.clear();releaseTouchPad();leaveConversation();
+ $('hint').textContent='No celular: segure as setas e toque em CONVERSAR perto do profissional. No computador: WASD/setas + E.';
+ renderStory();updateMission();stage('pick');drawCharacterCards();if(musicOn)toggleMusic(true);
+}
+$('restart').onclick=reset;$('restartMobile').onclick=reset;$('playAgain').onclick=reset;
+function frame(ts){let dt=Math.min(.05,Math.max(0,(ts-lastTime)/1000));lastTime=ts;gameTime+=dt;guideFlash=Math.max(0,guideFlash-dt);movement(dt);if($('intro').classList.contains('active'))drawStory(gameTime);if($('game').classList.contains('active')){if($('game').classList.contains('in-conversation'))drawRoomFocus(gameTime);else drawWorld(gameTime);mini()}confetti=confetti.filter(p=>p.life>0);for(let p of confetti){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=125*dt;p.life-=dt}requestAnimationFrame(frame)}renderStory();updateMission();requestAnimationFrame(frame);
+</script>
+<script>
+/* Os controles de toque e a lógica do RPG são os mesmos da versão completa.
+   O modo tela cheia depende das permissões e recursos do navegador móvel. */
+(function(){
+ const button=document.getElementById('fullscreenMobile');
+ if(!button) return;
+ button.addEventListener('click', async function(){
+   try{
+     if(document.fullscreenElement && document.exitFullscreen){await document.exitFullscreen();return}
+     if(document.documentElement.requestFullscreen){await document.documentElement.requestFullscreen();return}
+     button.textContent='USE O MENU DO NAVEGADOR';
+   }catch(e){button.textContent='TELA CHEIA INDISPONÍVEL'}
+ });
+ document.addEventListener('fullscreenchange',function(){button.textContent=document.fullscreenElement?'⊟ SAIR DA TELA CHEIA':'⛶ TELA CHEIA'});
+})();
+</script>
+</body></html>
